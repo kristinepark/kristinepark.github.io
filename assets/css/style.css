@@ -148,11 +148,11 @@ input, textarea {
 }
 
 ::selection {
-  background: var(--orange-yellow-crayola);
+  background: #FEAEAE;
   color: var(--smoky-black);
 }
 
-:focus { outline-color: var(--orange-yellow-crayola); }
+:focus { outline-color: #FEAEAE; }
 
 html { font-family: var(--ff-poppins); }
 
@@ -190,7 +190,7 @@ article {
   justify-content: center;
   align-items: center;
   font-size: 16px;
-  color: var(--orange-yellow-crayola);
+  color: #FEAEAE;
   box-shadow: var(--shadow-1);
   z-index: 1;
 }
@@ -350,7 +350,7 @@ main {
 }
 
 .info-content .title {
-  color: var(--white-1);
+  color: black;
   background: var(--onyx);
   font-size: var(--fs-7);
   font-weight: var(--fw-300);
@@ -365,7 +365,7 @@ main {
   right: -15px;
   border-radius: 0 15px;
   font-size: 13px;
-  color: var(--orange-yellow-crayola);
+  color: #FEAEAE;
   background: var(--border-gradient-onyx);
   padding: 10px;
   box-shadow: var(--shadow-2);
