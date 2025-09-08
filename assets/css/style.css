@@ -326,7 +326,7 @@ main {
   transition: var(--transition-2);
 }
 
-.sidebar.active { max-height: 600; }
+.sidebar.active { max-height: 600px; }
 
 .sidebar-info {
   position: relative;
@@ -1831,16 +1831,21 @@ textarea.form-input::-webkit-resizer { display: none; }
   .sidebar {
     position: sticky;
     top: 60px;
-    max-height: max-content;
-    height: 100%;
+    flex: 0 0 34%;
+    width: 34%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 0;
     padding-top: 60px;
+    justify-content: flex-start;
     z-index: 1;
   }
 
   .sidebar-info { flex-direction: column; }
 
-  .avatar-box img { width: 150px; }
+  .avatar-box img { width: 220px; }
 
   .info-content .name {
     white-space: nowrap;
