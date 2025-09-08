@@ -313,9 +313,11 @@ main {
 \*-----------------------------------*/
 
 .sidebar {
+  position: fixed;
+  margin: 20px auto;
   margin-bottom: 15px;
   max-height: 500px;
-  width: 550px; 
+  width: 600px; 
   display: flex;           
   align-items: center;       
   justify-content: center;  
@@ -323,7 +325,7 @@ main {
   transition: var(--transition-2);
 }
 
-.sidebar.active { max-height: 405px; }
+.sidebar.active { max-height: 600; }
 
 .sidebar-info {
   position: relative;
