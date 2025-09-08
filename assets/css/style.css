@@ -117,4 +117,79 @@ body{ background:var(--bg-page); color:var(--ink-700); }
 /* Hidden articles default (template behavior) */
 article{ display:none; }
 article.active{ display:block; animation:fade .24s var(--t-1) both; }
-@keyframes fade{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+@keyframes fade{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} 
+/* ===========================
+   WIDER, CLEAN TWO-COLUMN FRAME
+   =========================== */
+:root{
+  --frame-width: 1440px;   /* overall page width on desktop */
+  --page-pad:   28px;      /* equal left/right padding at page edge */
+  --col-gap:    28px;      /* space between sidebar & content */
+  --sidebar-w:  340px;     /* sidebar width */
+  --header-off: 88px;      /* height of top nav; keeps sticky below it */
+}
+
+/* Reserve space below the top navbar so content isn't glued to the very top */
+@media (min-width: 1024px){
+  main{ margin-top: var(--header-off); }
+}
+
+/* Desktop layout: sticky left sidebar + wide right content */
+@media (min-width: 1250px){
+
+  /* Page frame, centered with equal edges */
+  main{
+    max-width: var(--frame-width);
+    margin: 0 auto;
+    padding: 0 var(--page-pad);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: var(--col-gap);
+  }
+
+  /* Sidebar: sticky, no internal scroll, fixed column width */
+  .sidebar{
+    position: sticky !important;
+    top: var(--header-off);
+    flex: 0 0 var(--sidebar-w);
+    width: var(--sidebar-w);
+    max-width: var(--sidebar-w);
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    margin: 0 !important;
+  }
+
+  /* Right column fills the rest and can get nice and wide */
+  .main-content{
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto !important;
+    margin: 0 !important;
+    max-width: none; /* remove any earlier caps */
+  }
+
+  /* Roomier inside the cards/articles so added width looks intentional */
+  article{ padding: 40px; }
+
+  /* Service/portfolio/blog grids breathe more on wide screens */
+  .service-list{ grid-template-columns: 1fr 1fr; gap: 24px; }
+  .project-list, .blog-posts-list{ grid-template-columns: 1fr 1fr; gap: 28px; }
+}
+
+@media (min-width: 1600px){
+  :root{
+    --frame-width: 1600px; /* go even wider on very large displays */
+    --col-gap: 32px;
+    --sidebar-w: 360px;
+  }
+  article{ padding: 48px; }
+  .project-list, .blog-posts-list{ grid-template-columns: 1fr 1fr 1fr; }
+}
+
+/* Kill any earlier rules that were centering the columns or fixing widths */
+@media (min-width: 580px){  .sidebar, article{ width: auto; margin-inline: 0; } }
+@media (min-width: 768px){  .sidebar, article{ width: auto; margin-inline: 0; } }
+@media (min-width: 1024px){ .sidebar, article{ width: auto; margin-inline: 0; } }
+
