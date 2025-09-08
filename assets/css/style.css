@@ -313,14 +313,16 @@ main {
 \*-----------------------------------*/
 
 .sidebar {
-  position: fixed;
+  position: sticky;
   margin: 20px auto;
   margin-bottom: 15px;
   max-height: 500px;
   width: 600px; 
   display: flex;           
   flex-direction: column;
-  overflow: hidden;
+  margin: 0; 
+  overflow: visible;
+  align-self: flex-start; 
   transition: var(--transition-2);
 }
 
@@ -1815,9 +1817,8 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
   .main-content {
-    min-width: 75%;
-    width: 75%;
-    margin: 0;
+    min-width: 0;
+    flex: 1;
   }
 
 
