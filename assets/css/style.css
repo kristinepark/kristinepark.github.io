@@ -314,8 +314,8 @@ main {
 
 .sidebar {
   margin-bottom: 15px;
-  max-height: 112px;
-  width: 600px; 
+  max-height: 500px;
+  width: 550px; 
   display: flex;           
   align-items: center;       
   justify-content: center;  
@@ -1331,7 +1331,7 @@ textarea.form-input::-webkit-resizer { display: none; }
    */
 
   .sidebar {
-    max-height: 180px;
+    max-height: 400px;
     margin-bottom: 30px;
   }
 
@@ -1341,7 +1341,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .avatar-box { border-radius: 30px; }
 
-  .avatar-box img { width: 120px; }
+  .avatar-box img { width: 250px; }
 
   .info-content .name { margin-bottom: 15px; }
 
