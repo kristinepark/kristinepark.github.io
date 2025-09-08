@@ -320,8 +320,6 @@ main {
   width: 600px; 
   display: flex;           
   flex-direction: column;
-  align-items: center;       
-  justify-content: center;  
   overflow: hidden;
   transition: var(--transition-2);
 }
@@ -1836,7 +1834,6 @@ textarea.form-input::-webkit-resizer { display: none; }
     padding: 30px;       
     display: flex;
     flex-direction: column;
-    align-items: center;  
   }
 
 
