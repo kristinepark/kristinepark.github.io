@@ -2143,5 +2143,57 @@ html,body{
     padding: 40px;       /* give cards more inner space */
   }
 }
+/* === SIDEBAR STICKY + WIDER FRAME (final overrides) === */
+:root { --header-offset: 24px; } /* space from top when sticky */
 
+@media (min-width: 1250px) {
+  /* two-column frame, wider and aligned */
+  main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;         /* keep columns at the top, not centered */
+    justify-content: flex-start;
+  }
+
+  /* make the sidebar STICKY (not fixed) */
+  .sidebar {
+    position: sticky !important;     /* key: stick in place on scroll */
+    top: var(--header-offset);       /* offset from top */
+    flex: 0 0 360px;                 /* left column width */
+    width: 360px;
+    max-width: 360px;
+    height: auto !important;         /* no internal scroll */
+    max-height: none !important;
+    overflow: visible !important;
+    margin: 0 !important;
+  }
+
+  /* let the right column take the rest and scroll */
+  .main-content {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto !important;
+    margin: 0 !important;
+  }
+
+  /* make content blocks breathe on a wider page */
+  article {
+    width: auto !important;          /* undo earlier fixed widths */
+    padding: 40px;                   /* nicer inner spacing */
+  }
+}
+
+/* Remove earlier rules that break sticky/center things */
+.sidebar, article { box-shadow: var(--shadow-5); } /* keep your elevation */
+@media (min-width: 1024px) {
+  .sidebar, article { width: auto !important; }    /* undo 950px rule */
+}
+@media (min-width: 580px)  { .sidebar { margin-inline: 0 !important; } }
+@media (min-width: 768px)  { .sidebar { margin-inline: 0 !important; } }
+
+/* IMPORTANT: stop forcing the sidebar to be static everywhere */
+.sidebar { position: initial; } /* baseline */
 }
