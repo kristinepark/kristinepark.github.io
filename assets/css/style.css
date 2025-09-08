@@ -313,19 +313,22 @@ main {
 \*-----------------------------------*/
 
 .sidebar {
-  position: sticky;
+  position: fixed;
   margin-bottom: 15px;
   max-height: 500px;
-  width: 600px; 
+  width: 350px; 
   display: flex;           
   flex-direction: column;
   margin: 0; 
-  overflow: visible;
+  overflow-x: hidden;
   align-self: flex-start; 
+  z-index: 1;
+  top: 0;
+
   transition: var(--transition-2);
 }
 
-.sidebar.active { max-height: 600px; }
+.sidebar.active { max-height: 500px; }
 
 .sidebar-info {
   position: relative;
@@ -1827,9 +1830,9 @@ textarea.form-input::-webkit-resizer { display: none; }
    */
 
   .sidebar {
-    flex: 0 0 500px;   
-    height: 700x;   
-    max-width: 500px;
+    flex: 0 0 350px;   
+    height: 500px;   
+    max-width: 350px;
     padding: 30px;       
     display: flex;
     flex-direction: column;
