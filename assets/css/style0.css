@@ -2128,6 +2128,20 @@ html,body{
 
 /* Testimonials/clients minor spacing harmony */
 .testimonials, .clients{ margin-top: 8px !important; }
+/* Make the landing page wider on large screens */
+@media (min-width: 1250px) {
+  main {
+    max-width: 1400px;   /* was ~1200px */
+    padding: 0 40px;     /* a bit more gutter */
+  }
 
+  .main-content {
+    max-width: none;     /* let it stretch */
+  }
+
+  article {
+    padding: 40px;       /* give cards more inner space */
+  }
+}
 
 }
