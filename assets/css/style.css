@@ -1812,8 +1812,8 @@ textarea.form-input::-webkit-resizer { display: none; }
     margin-inline: auto;
     display: flex;
     justify-content: center;
-    align-items: stretch;
-    gap: 25px;
+    align-items: flex-start;
+    gap: 40px;
   }
 
   .main-content {
@@ -1831,13 +1831,12 @@ textarea.form-input::-webkit-resizer { display: none; }
   .sidebar {
     position: sticky;
     top: 60px;
-    flex: 0 0 34%;
-    width: 34%;
-    max-width: 420px;
+    flex: 0 0 350px;
+    width: 350px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 0;
     padding-top: 60px;
     justify-content: flex-start;
     z-index: 1;
@@ -1845,7 +1844,10 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .sidebar-info { flex-direction: column; }
 
-  .avatar-box img { width: 220px; }
+  .avatar-box img { 
+    width: 220px;
+    border-radius: 20px;
+  }
 
   .info-content .name {
     white-space: nowrap;
