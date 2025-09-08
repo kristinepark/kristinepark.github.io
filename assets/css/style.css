@@ -1989,4 +1989,145 @@ textarea.form-input::-webkit-resizer { display: none; }
 @media (min-width: 768px)  { .sidebar { margin-inline: 0 !important; } }
 @media (min-width: 1024px) { .sidebar { margin-inline: 0 !important; } }
 
+/* ================================
+   POLISH + LAYOUT OVERRIDES
+   (paste at the very end)
+   ================================ */
+
+/* Subtle, professional palette */
+:root{
+  --accent: #FEAEAE;                  /* your pink accent */
+  --ink-900:#0F172A;                  /* headings */
+  --ink-700:#334155;                  /* body text */
+  --ink-300:#CBD5E1;                  /* light borders */
+  --card-border: rgba(15, 23, 42, .08);
+  --card-shadow: 0 10px 30px rgba(15,23,42,.06);
+}
+
+/* Global polish */
+html,body{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+::selection{ background: var(--accent); color:#111; }
+
+/* Card tone: lighter borders & softer shadow */
+.sidebar, article{
+  border: 1px solid var(--card-border) !important;
+  box-shadow: var(--card-shadow) !important;
+  background:#fff !important;
+}
+
+/* Typography color pass */
+.about-text,
+.timeline-text,
+.blog-text,
+.contact-info :is(.contact-link, time, address){
+  color: var(--ink-700) !important;
+}
+.h2, .h3, .h4, .h5,
+.article-title{ color: var(--ink-900) !important; }
+
+/* Accent details */
+.icon-box{ color: var(--accent) !important; }
+.article-title::after{
+  background: linear-gradient(90deg, var(--accent), #ffd6d6) !important;
+}
+
+/* --------  LAYOUT: Sticky sidebar + scrolling content  -------- */
+
+/* reserve a little breathing room from the top */
+:root{ --header-offset: 28px; }
+
+@media (min-width: 1250px){
+  /* Two-column frame with equal page edges */
+  main{
+    max-width: 1200px !important;
+    margin: var(--header-offset) auto 80px auto !important;
+    padding: 0 32px !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 48px !important;
+  }
+
+  /* Sticky LEFT sidebar (no internal scrollbars) */
+  .sidebar{
+    position: sticky !important;
+    top: var(--header-offset) !important;
+    flex: 0 0 360px !important;
+    width: 360px !important;
+    max-width: 360px !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 28px !important;
+  }
+
+  /* RIGHT column fills the rest and scrolls with the page */
+  .main-content{
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: auto !important;
+    margin: 0 !important;
+  }
+}
+
+/* Kill old rules that centered/locked widths or made the sidebar fixed */
+.sidebar{ position: static !important; margin-inline: 0 !important; }
+@media (min-width: 580px){  .sidebar{ width: auto !important; } }
+@media (min-width: 768px){  .sidebar{ width: auto !important; } }
+@media (min-width: 1024px){
+  .sidebar{ width: auto !important; }
+  .main-content{ width: auto !important; margin: 0 !important; }
+}
+
+/* Keep the nav tidy, above content, with subtle glass effect */
+.navbar{
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 10 !important;
+  width: 100% !important;
+  border-radius: 14px !important;
+  backdrop-filter: blur(8px) !important;
+  background: rgba(17,24,39,.6) !important; /* deep translucent */
+  margin-bottom: 18px !important;
+}
+
+/* Sidebar content tidy ups */
+.info_more-btn{ display: none !important; }   /* no expand/collapse */
+.sidebar-info{ flex-direction: column !important; gap: 18px !important; }
+.avatar-box img{ width: 220px !important; border-radius: 16px !important; }
+.info-content .name{
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  color: var(--ink-900) !important;
+}
+.info-content .title{
+  background: #F3F4F6 !important;
+  color: #111 !important;
+  border-radius: 999px !important;
+  padding: 6px 12px !important;
+}
+
+/* Contact colors (avoid white-on-white) */
+.contact-title{ color:#6B7280 !important; }
+.contact-link{ color:#111 !important; }
+
+/* Service cards: slightly brighter text/spacing for readability */
+.service-item{
+  padding: 28px !important;
+}
+.service-item-title{ color:#fff !important; }
+.service-item-text{
+  color: #E5E7EB !important;
+  line-height: 1.7 !important;
+}
+
+/* Testimonials/clients minor spacing harmony */
+.testimonials, .clients{ margin-top: 8px !important; }
+
+
 }
