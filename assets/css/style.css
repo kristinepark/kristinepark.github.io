@@ -314,7 +314,6 @@ main {
 
 .sidebar {
   position: sticky;
-  margin: 20px auto;
   margin-bottom: 15px;
   max-height: 500px;
   width: 600px; 
@@ -1828,7 +1827,6 @@ textarea.form-input::-webkit-resizer { display: none; }
    */
 
   .sidebar {
-    position: fixed;
     flex: 0 0 500px;   
     height: 700x;   
     max-width: 500px;
