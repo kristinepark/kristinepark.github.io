@@ -1828,9 +1828,9 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .sidebar {
     position: fixed;
-    flex: 0 0 360px;   
-    height: 500px;   
-    max-width: 360px;
+    flex: 0 0 500px;   
+    height: 700x;   
+    max-width: 500px;
     padding: 30px;       
     display: flex;
     flex-direction: column;
