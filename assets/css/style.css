@@ -2638,5 +2638,96 @@ html, body{ overflow-x:hidden; }
   .navbar{ position: sticky !important; top:0 !important; bottom:auto !important; }
   .sidebar{ position: sticky !important; } /* your wide-screen behavior */
 }
+/* ===== FINAL PATCH: mobile stack + consistent colors ===== */
+
+/* unify colors everywhere */
+:root{
+  --ink-900:#0F172A;   /* headings */
+  --ink-700:#334155;   /* body text */
+}
+body{ color: var(--ink-700) !important; }
+.h2,.h3,.h4,.h5,.article-title{ color: var(--ink-900) !important; }
+.about-text p,
+.timeline-text,
+.service-item-text,
+.blog-text,
+.contact-info :is(.contact-link, time, address){
+  color: var(--ink-700) !important;
+}
+/* kill any forced white links */
+.contact-link{ color: inherit !important; text-decoration: none; }
+
+/* remove grayscale/invert that can make fonts look lighter */
+.mapbox iframe{ filter: none !important; }
+
+/* prevent side-scroll */
+html,body{ overflow-x:hidden; }
+
+/* -------- MOBILE & TABLET: make it one column -------- */
+@media (max-width: 1024px){
+  /* sidebar becomes a normal block */
+  .sidebar{
+    position: static !important;
+    top: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 0 16px 0 !important;
+    padding: 20px !important;
+    z-index: 0 !important;        /* so it never sits above content */
+  }
+
+  /* always show contacts; remove the toggle chip */
+  .info_more-btn{ display: none !important; }
+  .sidebar-info_more{
+    opacity: 1 !important;
+    visibility: visible !important;
+    height: auto !important;
+  }
+
+  /* page flow is stacked */
+  main{
+    display: block !important;
+    max-width: 100% !important;
+    padding: 0 16px !important;
+    margin: 0 auto 76px auto !important; /* room for bottom nav */
+  }
+  .main-content, article{
+    width: 100% !important;
+    margin: 0 !important;
+  }
+  article{ padding: 20px !important; }
+
+  /* bottom nav fixed; reserve space so it doesn't cover text */
+  .navbar{
+    position: fixed !important;
+    left: 0; right: 0; bottom: 0;
+    width: 100% !important;
+    border-radius: 14px 14px 0 0 !important;
+    z-index: 999 !important;
+  }
+  body{ padding-bottom: 76px !important; }
+
+  /* single-column grids */
+  .project-list, .blog-posts-list{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+  .contacts-list{ grid-template-columns: 1fr !important; }
+
+  /* media scale */
+  img, iframe, video{ max-width: 100%; height: auto; }
+  .mapbox{ height: auto; aspect-ratio: 16/10; }
+}
+
+/* -------- DESKTOP: keep your sticky layout -------- */
+@media (min-width: 1025px){
+  body{ padding-bottom: 0 !important; }
+  .navbar{ position: sticky !important; top: 0 !important; bottom: auto !important; }
+  .sidebar{ position: sticky !important; } /* your desktop behavior */
+}
 
 }
