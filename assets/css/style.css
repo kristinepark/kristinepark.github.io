@@ -53,7 +53,7 @@ article.active{ display:block; }
 /* --------- sidebar (no overlay on mobile) --------- */
 .sidebar{ padding:var(--pad); margin-bottom:var(--gap); }
 .sidebar-info{ display:flex; gap:16px; align-items:center; }
-.avatar-box img{ width:120px; border-radius:var(--r-md); box-shadow:var(--shadow-sm); }
+.avatar-box img{ width:160px; box-shadow:var(--shadow-sm); }
 .info-content .name{ margin:2px 0 6px; font-weight:600; color:var(--ink-900); }
 .info-content .title{ display:inline-block; padding:6px 10px; border-radius:999px; background:#F3F4F6; color:#111; font-size:13px; }
 
@@ -215,7 +215,6 @@ textarea.form-input{ min-height:110px; resize:vertical; }
 
   .avatar-box img{
     width:150px;
-    border-radius:16px;
   }
 
   .info-content{ width:100%; }
@@ -383,3 +382,157 @@ textarea.form-input{ min-height:110px; resize:vertical; }
   line-height: 1.55;
   margin: 0;
 }
+/* === Kristine theme: bright, positive, professional =================== */
+:root{
+  /* Palette */
+  --kp-bg:        #f7fafc;   /* page background (very light) */
+  --kp-surface:   #ffffff;   /* cards, sidebar, nav */
+  --kp-border:    #e2e8f0;   /* subtle borders */
+  --kp-text:      #0f172a;   /* headings / primary text (navy) */
+  --kp-muted:     #475569;   /* body text (slate) */
+
+  /* Accent = Sunrise Coral (friendly but professional) */
+  --kp-accent:        #ff6b6b;
+  --kp-accent-600:    #ff4d4d;
+  --kp-accent-soft:   #fff1f1;
+
+  --kp-radius-lg: 16px;
+  --kp-radius-md: 12px;
+  --kp-shadow: 0 10px 24px rgba(15,23,42,.06);
+}
+
+/* Base */
+html, body { background: var(--kp-bg); color: var(--kp-text); }
+h1,h2,h3,h4,h5,h6 { color: var(--kp-text); }
+p, li, address, time, .blog-text { color: var(--kp-muted); }
+a { color: var(--kp-accent); text-decoration: none; }
+a:hover { color: var(--kp-accent-600); }
+
+/* Kill any stray bullets globally on UI lists */
+.navbar-list, .contacts-list, .service-list, .skills-list, .project-list,
+.blog-posts-list, .testimonials-list, .filter-list { list-style: none; padding: 0; margin: 0; }
+
+/* Sidebar (contact card) */
+.sidebar{
+  background: var(--kp-surface);
+  border: 1px solid var(--kp-border);
+  border-radius: var(--kp-radius-lg);
+  box-shadow: var(--kp-shadow);
+}
+.sidebar .name{ color: var(--kp-text); }
+.sidebar .title{ color: var(--kp-muted); }
+.sidebar .separator{ background: var(--kp-border); }
+.icon-box{
+  background: var(--kp-accent-soft);
+  border-radius: 12px;
+}
+.icon-box ion-icon{ color: var(--kp-accent); }
+.contact-title{ color: var(--kp-muted); }
+.contact-link{ color: var(--kp-text); }
+.contact-link:hover{ color: var(--kp-accent); }
+.info_more-btn{
+  background: var(--kp-accent);
+  color:#fff;
+  border-radius: 9999px;
+}
+.info_more-btn:hover{ background: var(--kp-accent-600); }
+
+/* Navbar */
+.navbar{
+  background: var(--kp-surface);
+  border: 1px solid var(--kp-border);
+  border-radius: var(--kp-radius-lg);
+  box-shadow: var(--kp-shadow);
+}
+.navbar-link{
+  color: var(--kp-muted);
+  border-radius: 9999px;
+}
+.navbar-link.active,
+.navbar-link:hover{
+  background: var(--kp-accent);
+  color:#fff;
+}
+
+/* Section headers */
+.article-title, .service-title, .skills-title, .clients-title, .form-title{
+  color: var(--kp-text);
+}
+
+/* What I'm doing (service cards) */
+.service .service-list{
+  display: grid; gap: 24px;
+  grid-template-columns: repeat(2, minmax(260px,1fr));
+}
+@media (max-width: 768px){ .service .service-list{ grid-template-columns: 1fr; } }
+
+.service .service-item{
+  background: var(--kp-surface);
+  border: 1px solid var(--kp-border);
+  border-radius: var(--kp-radius-lg);
+  box-shadow: var(--kp-shadow);
+  padding: 20px;
+  display: grid; grid-template-columns: 56px 1fr; gap: 16px;
+}
+.service .service-item:hover{ transform: translateY(-2px); transition: .2s; }
+.service .service-item-title{ color: var(--kp-text); margin: 0 0 6px; font-weight: 700; }
+.service .service-item-text{ color: var(--kp-muted); margin: 0; }
+
+/* Skills */
+.skills-list.content-card{
+  background: var(--kp-surface);
+  border: 1px solid var(--kp-border);
+  border-radius: var(--kp-radius-lg);
+  box-shadow: var(--kp-shadow);
+  padding: 16px;
+}
+.skill-progress-bg{
+  height: 8px; border-radius: 9999px; background: #eef2f7;
+}
+.skill-progress-fill{
+  height: 8px; border-radius: 9999px; background: var(--kp-accent);
+}
+
+/* Portfolio filters — chips only (hide the duplicate dropdown) */
+.filter-select-box{ display:none; }
+.filter-list{ display:flex; flex-wrap:wrap; gap: 10px; margin-bottom: 16px; }
+.filter-list .filter-item button{
+  border:1px solid var(--kp-border);
+  background:#fff; color: var(--kp-muted);
+  padding: 8px 14px; border-radius:9999px;
+}
+.filter-list .filter-item button.active{
+  background: var(--kp-accent); border-color: var(--kp-accent); color:#fff;
+  box-shadow: 0 6px 14px rgba(255,107,107,.25);
+}
+
+/* Project, blog, testimonial cards */
+.project-item a,
+.blog-post-item a,
+.content-card{
+  display:block;
+  background: var(--kp-surface);
+  border:1px solid var(--kp-border);
+  border-radius: var(--kp-radius-lg);
+  box-shadow: var(--kp-shadow);
+  padding: 12px;
+  color: var(--kp-text);
+}
+.project-img img, .blog-banner-box img, .testimonials-avatar-box img{ border-radius: var(--kp-radius-md); }
+
+/* Contact form */
+.form .form-input{
+  background:#fff; color: var(--kp-text);
+  border:1px solid var(--kp-border);
+  border-radius: 10px; padding: 12px 14px;
+}
+.form .form-input:focus{ outline:none; border-color: var(--kp-accent); box-shadow: 0 0 0 3px var(--kp-accent-soft); }
+.form-btn{
+  background: var(--kp-accent); color:#fff; border:0;
+  border-radius: 12px; padding: 10px 16px;
+}
+.form-btn:hover{ background: var(--kp-accent-600); }
+
+/* Map & modal polish */
+.mapbox figure{ border-radius: var(--kp-radius-lg); overflow:hidden; border:1px solid var(--kp-border); }
+.overlay.active{ background: rgba(15,23,42,.55); }
