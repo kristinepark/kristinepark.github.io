@@ -1344,8 +1344,6 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .avatar-box { border-radius: 30px; }
 
-  .avatar-box img { width: 250px; }
-
   .info-content .name { margin-bottom: 15px; }
 
   .info-content .title { padding: 5px 18px; }
@@ -1842,10 +1840,6 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .sidebar-info { flex-direction: column; }
 
-  .avatar-box img { 
-    width: 220px;
-  }
-
   .info-content .name {
     white-space: nowrap;
     font-size: 20px;    
@@ -1937,11 +1931,6 @@ textarea.form-input::-webkit-resizer { display: none; }
   .main-content { width: auto !important; margin: 0 !important; } /* was width:max-content; margin:auto */
 }
 
-/* optional: photo/typography scale so the larger sidebar looks balanced */
-@media (min-width: 1250px) {
-  .avatar-box img { width: 220px; }
-  .info-content .name { font-size: 20px; font-weight: 600; text-align: center; }
-}
 /* 1) Reserve space under the top nav (adjust if your nav is taller) */
 @media (min-width: 1024px) {
   :root { --header-offset: 88px; }           /* ~nav height */
@@ -2098,7 +2087,6 @@ html,body{
 /* Sidebar content tidy ups */
 .info_more-btn{ display: none !important; }   /* no expand/collapse */
 .sidebar-info{ flex-direction: column !important; gap: 18px !important; }
-.avatar-box img{ width: 220px !important; border-radius: 16px !important; }
 .info-content .name{
   font-size: 20px !important;
   font-weight: 600 !important;
@@ -2342,7 +2330,6 @@ body { padding-bottom: 68px; } /* reserve space ≈ navbar height */
   padding: 20px !important;
 }
 .sidebar-info { gap: 12px; }
-.avatar-box img { width: 140px; margin: 0 auto; }
 .info-content .name { text-align: center; }
 .info-content .title { margin: 0 auto; }
 
@@ -2410,7 +2397,6 @@ article { padding: 20px !important; }
 /* >= 600px: slightly wider cards & avatar */
 @media (min-width: 600px){
   article { padding: 24px !important; }
-  .avatar-box img { width: 160px; }
 }
 
 /* >= 768px: 2-column grids, split contact inputs */
