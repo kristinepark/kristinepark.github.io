@@ -235,7 +235,7 @@ textarea.form-input{ min-height:110px; resize:vertical; }
     min-height:36px;
     padding:8px 12px;
     margin-top:4px;
-    max-width:280px;
+    max-width:350px;
     border-radius:999px;
     background:#F3F4F6;
     color:#111;
@@ -273,8 +273,8 @@ textarea.form-input{ min-height:110px; resize:vertical; }
   border-radius:12px;
   padding:10px 12px;
 }
-.contact-title{ color:#6B7280; font-size:12px; text-transform:uppercase; margin:0 0 4px; }
-.contact-link, .contact-info address{ color:#0F172A; }
+.contact-title{ color:#6B7280; font-size:15px; text-transform:uppercase; margin:0 0 4px; }
+.contact-link, .contact-info address{ color:#0F172A; font-size: 15px;}
 
 /* ===== FIX #2: portfolio filters — show pills only, hide the dropdown ===== */
 .filter-select-box{ display:none !important; }  /* hide the duplicate select UI */
