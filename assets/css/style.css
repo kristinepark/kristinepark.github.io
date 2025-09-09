@@ -203,3 +203,99 @@ textarea.form-input{ min-height:110px; resize:vertical; }
   .project-list{ grid-template-columns:repeat(3,1fr); gap:24px; }
   .blog-posts-list{ grid-template-columns:repeat(2,1fr); gap:24px; }
 }
+
+/* ===== FIX #1: mobile sidebar layout (clean, centered, no weird overlaps) ===== */
+@media (max-width: 767px){
+
+  .sidebar{ padding:18px; }
+
+  /* stack avatar → name → title → button vertically */
+  .sidebar-info{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:10px;
+  }
+
+  .avatar-box img{
+    width:150px;
+    border-radius:16px;
+  }
+
+  .info-content{ width:100%; }
+
+  .info-content .name{
+    margin:4px 0 2px;
+    line-height:1.25;
+    white-space:normal;          /* stop weird single-word line breaks */
+    word-break:keep-all;
+  }
+
+  /* make the role a proper pill, not a circle */
+  .info-content .title{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:36px;
+    padding:8px 12px;
+    margin-top:4px;
+    max-width:280px;
+    border-radius:999px;
+    background:#F3F4F6;
+    color:#111;
+    white-space:normal;
+  }
+
+  /* full-width “Show Contacts” button under the title */
+  .info_more-btn{
+    width:100%;
+    justify-content:center;
+    padding:10px 12px;
+    border-radius:999px;
+    margin-top:6px;
+  }
+
+  /* contacts expand inline (no overlay) with tidy spacing */
+  .sidebar-info_more{
+    margin-top:10px;
+  }
+}
+
+/* keep contact rows perfectly aligned on all sizes */
+.contacts-list{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+}
+.contact-item{
+  display:grid;
+  grid-template-columns:38px 1fr;
+  align-items:center;
+  gap:12px;
+  background:#F9FAFB;
+  border:1px solid rgba(15,23,42,.06);
+  border-radius:12px;
+  padding:10px 12px;
+}
+.contact-title{ color:#6B7280; font-size:12px; text-transform:uppercase; margin:0 0 4px; }
+.contact-link, .contact-info address{ color:#0F172A; }
+
+/* ===== FIX #2: portfolio filters — show pills only, hide the dropdown ===== */
+.filter-select-box{ display:none !important; }  /* hide the duplicate select UI */
+.filter-list{
+  display:flex !important;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:12px;
+}
+.filter-item button{
+  padding:8px 12px;
+  border-radius:999px;
+  background:#F3F4F6;
+}
+.filter-item button.active{
+  background:var(--accent);
+  color:#111;
+}
+
