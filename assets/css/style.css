@@ -2530,5 +2530,113 @@ article { padding: 20px !important; }
   .navbar{ position: sticky !important; top:0 !important; bottom:auto !important; }
   .sidebar{ position: sticky !important; } /* your wide-screen behavior */
 }
+/* =========================
+   CONSISTENT COLORS & TYPE
+   ========================= */
+:root{
+  --ink-900:#0F172A;   /* headings */
+  --ink-700:#334155;   /* body text */
+}
+
+/* Set a clear baseline */
+body{ color: var(--ink-700); }
+
+/* Headings and section titles */
+.h2,.h3,.h4,.h5,.article-title{ color: var(--ink-900) !important; }
+
+/* Body-ish text across sections */
+.about-text p,
+.timeline-text,
+.service-item-text,
+.blog-text,
+.contact-info :is(.contact-link, time, address){
+  color: var(--ink-700) !important;
+}
+
+/* Contact titles a bit lighter */
+.contact-title{ color:#6B7280 !important; }
+
+/* Links inherit normal text color (fixes white-on-white on mobile) */
+.contact-link{ color: inherit !important; text-decoration: none; }
+
+/* Map: remove invert/grayscale that can look odd on phones */
+.mapbox iframe{ filter:none !important; }
+
+/* Prevent any surprise horizontal scrolling */
+html, body{ overflow-x:hidden; }
+
+/* ==========================================
+   MOBILE BEHAVIOR (NO SIDEBAR OVERLAY)
+   ========================================== */
+@media (max-width: 1024px){
+  /* Sidebar becomes a normal block; no internal scroll, no overlay */
+  .sidebar{
+    position: static !important;
+    top: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    margin: 0 0 16px 0 !important;
+    padding: 20px !important;
+    z-index: 0 !important; /* ensure it doesn't sit above content */
+  }
+
+  /* Always show contact info; hide the toggle chip */
+  .info_more-btn{ display:none !important; }
+  .sidebar-info_more{
+    opacity:1 !important;
+    visibility:visible !important;
+    height:auto !important;
+  }
+
+  /* One-column page flow */
+  main{
+    display:block !important;
+    max-width:100% !important;
+    padding: 0 16px !important;
+    margin: 0 auto 76px auto !important; /* bottom space for nav */
+  }
+
+  .main-content, article{
+    width:100% !important;
+    margin:0 !important;
+    position: relative; z-index: 0;
+  }
+
+  /* Bottom nav fixed so it doesn't obscure content */
+  .navbar{
+    position: fixed !important;
+    left:0; right:0; bottom:0;
+    width:100% !important;
+    border-radius: 14px 14px 0 0 !important;
+    z-index: 999 !important;
+  }
+  body{ padding-bottom: 76px; } /* reserve room for the nav */
+
+  /* Grids go single column on phones */
+  .project-list, .blog-posts-list{
+    display:grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  /* Contacts list stacks */
+  .contacts-list{ grid-template-columns: 1fr !important; }
+
+  /* Media scale properly */
+  img, iframe, video{ max-width:100%; height:auto; }
+  .mapbox{ height:auto; aspect-ratio: 16/10; }
+}
+
+/* ===========================
+   DESKTOP: keep sticky layout
+   =========================== */
+@media (min-width: 1025px){
+  body{ padding-bottom:0 !important; }
+  .navbar{ position: sticky !important; top:0 !important; bottom:auto !important; }
+  .sidebar{ position: sticky !important; } /* your wide-screen behavior */
+}
 
 }
