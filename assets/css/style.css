@@ -536,3 +536,63 @@ a:hover { color: var(--kp-accent-600); }
 /* Map & modal polish */
 .mapbox figure{ border-radius: var(--kp-radius-lg); overflow:hidden; border:1px solid var(--kp-border); }
 .overlay.active{ background: rgba(15,23,42,.55); }
+
+/* === What I'm doing — make content visible + friendly hover === */
+
+/* Layout stays; kill any dark overlay the old theme adds */
+.service .service-item::before,
+.service .service-item::after { display: none !important; content: none !important; }
+
+/* Card base */
+.service .service-item{
+  background: var(--kp-surface);               /* stays light */
+  border: 1px solid var(--kp-border);
+  border-radius: var(--kp-radius-lg);
+  box-shadow: var(--kp-shadow);
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 16px;
+  transition: background .18s ease, border-color .18s ease,
+              box-shadow .18s ease, transform .18s ease;
+}
+
+/* Text colors always readable */
+.service .service-item-title{ color: var(--kp-text); margin: 0 0 6px; font-weight: 700; }
+.service .service-item-text{ color: var(--kp-muted); margin: 0; opacity: .95; transition: opacity .18s ease; }
+
+/* Hover/focus: subtle lift + soft accent background (not dark) */
+.service .service-item:hover,
+.service .service-item:focus-within{
+  background: var(--kp-accent-soft);
+  border-color: var(--kp-accent);
+  box-shadow: 0 12px 28px rgba(255,107,107,.18);
+  transform: translateY(-2px);
+}
+.service .service-item:hover .service-item-text{ opacity: 1; }
+
+/* Icon container + icon colors */
+.service .service-icon-box{
+  width: 56px; height: 56px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 14px;
+  background: var(--kp-accent-soft);
+  border: 1px solid color-mix(in srgb, var(--kp-accent) 25%, white);
+}
+.service .service-icon-box ion-icon{
+  font-size: 28px;
+  color: var(--kp-accent);                      /* accent color for ionicons */
+}
+
+/* Keep icon visible on hover */
+.service .service-item:hover .service-icon-box{
+  background: #fff;
+  border-color: var(--kp-accent);
+}
+
+/* Recolor the SVG <img> icon to the same accent tone */
+.service .service-icon-box img{
+  width: 28px; height: 28px; display: block;
+  filter: brightness(0) saturate(100%) invert(50%) sepia(56%)
+          saturate(1425%) hue-rotate(-5deg) brightness(103%) contrast(103%);
+}
