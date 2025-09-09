@@ -46,7 +46,7 @@ article.active{ display:block; }
   border-top:1px solid rgba(15,23,42,.25);
 }
 .navbar-list{ display:flex; justify-content:space-around; align-items:center; padding:10px 8px; }
-.navbar-link{ color:#E5E7EB; opacity:.9; padding:10px 8px; border-radius:10px; font-size:20px; }
+.navbar-link{ color:#E5E7EB; opacity:.9; padding:10px 8px; border-radius:10px; font-size:16px; }
 .navbar-link.active{ color:var(--accent); background:rgba(254,174,174,.08); }
 .main-content{ padding-bottom:72px; } /* keep content above fixed navbar */
 
