@@ -294,3 +294,22 @@ textarea.form-input{ min-height:110px; resize:vertical; }
   color:#111;
 }
 
+/* === Desktop/tablet only: sidebar should fit its content === */
+@media (min-width: 768px){
+  /* make sure the flex row doesn't stretch the sidebar vertically */
+  main{ align-items: flex-start; }
+
+  .sidebar{
+    height: fit-content !important;    /* shrink-wrap */
+    max-height: none !important;       /* remove any caps */
+    overflow: visible !important;      /* no internal scrollbar */
+    padding: 22px 24px;                /* compact padding */
+  }
+
+  /* ignore the mobile "active" height cap on larger screens */
+  .sidebar.active{ max-height: none !important; }
+
+  /* slightly tighter spacing so the card is shorter */
+  .sidebar .separator{ margin: 12px 0; }
+  .contacts-list{ gap: 10px; }
+}
