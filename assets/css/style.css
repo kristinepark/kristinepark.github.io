@@ -409,8 +409,10 @@ a { color: var(--kp-accent); text-decoration: none; }
 a:hover { color: var(--kp-accent-600); }
 
 /* Kill any stray bullets globally on UI lists */
-.navbar-list, .contacts-list, .service-list, .skills-list, .project-list,
+.contacts-list, .service-list, .skills-list, .project-list,
 .blog-posts-list, .testimonials-list, .filter-list { list-style: none; padding: 0; margin: 0; }
+
+.navbar-list { list-style: none; padding: 1; margin: 0; }
 
 /* Sidebar (contact card) */
 .sidebar{
