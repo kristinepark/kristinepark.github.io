@@ -234,8 +234,8 @@ textarea.form-input{ min-height:110px; resize:vertical; }
     justify-content:center;
     min-height:36px;
     padding:8px 12px;
-    margin-top:4px;
-    max-width:350px;
+    margin-top:3px;
+    max-width:400px;
     border-radius:999px;
     background:#F3F4F6;
     color:#111;
@@ -273,7 +273,7 @@ textarea.form-input{ min-height:110px; resize:vertical; }
   border-radius:12px;
   padding:10px 12px;
 }
-.contact-title{ color:#6B7280; font-size:15px; text-transform:uppercase; margin:0 0 4px; }
+.contact-title{ color:#6B7280; font-size:17px; text-transform:uppercase; margin:0 0 4px; }
 .contact-link, .contact-info address{ color:#0F172A; font-size: 15px;}
 
 /* ===== FIX #2: portfolio filters — show pills only, hide the dropdown ===== */
@@ -312,4 +312,74 @@ textarea.form-input{ min-height:110px; resize:vertical; }
   /* slightly tighter spacing so the card is shorter */
   .sidebar .separator{ margin: 12px 0; }
   .contacts-list{ gap: 10px; }
+}
+/* === Overrides: Service cards (What I'm doing) ========================= */
+:root{
+  /* if these already exist in your theme, this safely falls back */
+  --kp-card-bg: #0f172a;           /* dark navy surface */
+  --kp-card-bg-hover: #0b1220;     /* slightly darker on hover */
+  --kp-card-border: #1f2a44;       /* subtle border */
+  --kp-card-text: #e8eef8;         /* primary text on card */
+  --kp-card-muted: #b8c2d9;        /* secondary text on card */
+  --kp-icon-bg: rgba(255,255,255,0.06);
+}
+
+.service .service-list{
+  list-style: none;                 /* kill any bullets everywhere */
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px,1fr));
+  gap: 24px;
+}
+@media (max-width: 768px){
+  .service .service-list{ grid-template-columns: 1fr; }
+}
+
+.service .service-item{
+  background: var(--kp-card-bg);
+  color: var(--kp-card-text);
+  border: 1px solid var(--kp-card-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(3, 7, 18, 0.25);
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.service .service-item:hover{
+  background: var(--kp-card-bg-hover);
+  transform: translateY(-2px);
+  transition: background .2s ease, transform .2s ease;
+}
+
+.service .service-icon-box{
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: var(--kp-icon-bg);
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+.service .service-icon-box ion-icon,
+.service .service-icon-box img{
+  width: 24px; height: 24px;
+  color: var(--kp-card-text);
+  opacity: .95;
+}
+
+.service .service-content-box{
+  color: var(--kp-card-text);
+}
+.service .service-item-title{
+  color: var(--kp-card-text);
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.service .service-item-text{
+  color: var(--kp-card-muted);
+  line-height: 1.55;
+  margin: 0;
 }
