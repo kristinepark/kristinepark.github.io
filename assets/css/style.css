@@ -1,589 +1,1177 @@
 /* --------- tokens --------- */
+
 :root{
+
   --accent:#FEAEAE;
 
+
+
   --ink-900:#0F172A;   /* headings */
+
   --ink-700:#334155;   /* body text */
+
   --ink-500:#64748B;   /* meta */
+
   --ink-300:#E5E7EB;   /* hairline borders */
 
+
+
   --bg:#FAFAFA;        /* page */
+
   --card:#FFFFFF;      /* cards */
 
+
+
   --shadow-sm:0 6px 18px rgba(15,23,42,.06);
+
   --shadow-md:0 14px 34px rgba(15,23,42,.10);
 
+
+
   --r-sm:14px; --r-md:18px; --r-lg:22px;
+
   --pad:20px; --gap:18px;
+
   --fs-base:clamp(14px,1.5vw,16px);
+
 }
+
+
 
 /* --------- reset --------- */
+
 *,
+
 *::before,*::after{ box-sizing:border-box; }
+
 html,body{ margin:0;padding:0; font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; font-size:var(--fs-base); color:var(--ink-700); background:var(--bg); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; overflow-x:hidden; }
+
 img,video,iframe{ max-width:100%; height:auto; display:block; }
+
 a{ color:inherit; text-decoration:none; }
+
 button{ font:inherit; border:0; background:none; cursor:pointer; }
+
 ul,ol{ list-style:none; margin:0; padding:0; }  /* ← FIX bullets (#3) */
 
+
+
 /* --------- layout --------- */
+
 main{ max-width:1120px; margin:16px auto 96px; padding:0 16px; }
+
 .sidebar, article{ background:var(--card); border:1px solid rgba(15,23,42,.08); border-radius:var(--r-lg); box-shadow:var(--shadow-sm); }
 
+
+
 /* only show active page — script.js toggles .active */
+
 article{ display:none; padding:var(--pad); margin-bottom:var(--gap); }
+
 article.active{ display:block; }
 
+
+
 /* headings */
+
 .h2.article-title{ color:var(--ink-900); margin:0 0 10px; font-weight:600; position:relative; padding-bottom:6px; }
+
 .h2.article-title::after{ content:""; position:absolute; left:0; bottom:0; width:42px; height:3px; background:linear-gradient(90deg,var(--accent),#ffd6d6); border-radius:3px; }
 
+
+
 /* --------- navbar (uses buttons with data-nav-link) --------- */
+
 .navbar{
+
   position:fixed; left:0; right:0; bottom:0; z-index:30;
+
   background:rgba(17,24,39,.78); backdrop-filter:blur(10px);
+
   border-top:1px solid rgba(15,23,42,.25);
+
 }
+
 .navbar-list{ display:flex; justify-content:space-around; align-items:center; padding:10px 8px; }
+
 .navbar-link{ color:#E5E7EB; opacity:.9; padding:10px 8px; border-radius:10px; font-size:16px; }
+
 .navbar-link.active{ color:var(--accent); background:rgba(254,174,174,.08); }
+
 .main-content{ padding-bottom:72px; } /* keep content above fixed navbar */
 
+
+
 /* --------- sidebar (no overlay on mobile) --------- */
+
 .sidebar{ padding:var(--pad); margin-bottom:var(--gap); }
+
 .sidebar-info{ display:flex; gap:16px; align-items:center; }
+
 .avatar-box img{ width:160px; box-shadow:var(--shadow-sm); }
+
 .info-content .name{ margin:2px 0 6px; font-weight:600; color:var(--ink-900); }
+
 .info-content .title{ display:inline-block; padding:6px 10px; border-radius:999px; background:#F3F4F6; color:#111; font-size:13px; }
 
+
+
 /* toggle button chip */
+
 .info_more-btn{ display:inline-flex; gap:8px; align-items:center; margin-left:auto; padding:6px 10px; border-radius:999px; background:#111827; color:#fff; box-shadow:var(--shadow-sm); }
 
+
+
 /* contacts: hidden until sidebar gets .active (script.js toggles) */
+
 .sidebar-info_more{ overflow:hidden; max-height:0; opacity:0; visibility:hidden; transition:max-height .35s ease, opacity .25s ease; }
+
 .sidebar.active .sidebar-info_more{ max-height:1000px; opacity:1; visibility:visible; }
+
+
 
 .separator{ height:1px; background:var(--ink-300); margin:16px 0; border-radius:1px; }
 
+
+
 /* strict alignment grid for contact rows — FIX (#2) */
+
 .contacts-list{ display:grid; grid-template-columns:1fr; gap:12px; }
+
 .contacts-list .contact-item{
+
   display:grid; grid-template-columns:38px 1fr; align-items:center; gap:12px;
+
   background:#F9FAFB; border:1px solid rgba(15,23,42,.06); border-radius:var(--r-sm); padding:10px 12px;
+
 }
+
 .contacts-list .icon-box{
+
   width:38px; height:38px; display:grid; place-items:center;
+
   color:var(--accent); background:#fff; border-radius:10px; border:1px solid rgba(15,23,42,.08); box-shadow:var(--shadow-sm);
+
 }
+
 .contact-title{ color:#6B7280; font-size:12px; text-transform:uppercase; letter-spacing:.04em; line-height:1; margin:0 0 4px; }
+
 .contact-link, .contact-info address{ color:var(--ink-900); word-break:break-word; }
 
+
+
 /* --------- About page: service cards (restore card look) --------- */
+
 .about-text p{ margin:0 0 12px; line-height:1.65; }
 
+
+
 .service{ margin-top:14px; }
+
 .h3.service-title{ margin:0 0 10px; color:var(--ink-900); }
+
 .service-list{ display:grid; grid-template-columns:1fr; gap:14px; }
+
 .service-item{
+
   display:grid; grid-template-columns:44px 1fr; gap:12px; align-items:flex-start;
+
   padding:16px; background:#0B1220; color:#E5E7EB; border-radius:16px; box-shadow:var(--shadow-sm);
+
 }
+
 .service-icon-box{ width:44px; height:44px; display:grid; place-items:center; border-radius:10px; background:rgba(255,255,255,.06); }
+
 .service-content-box .h4{ color:#fff; margin:0 0 6px; }
+
 .service-item-text{ color:#C7D2FE; margin:0; line-height:1.7; }
 
+
+
 /* --------- Testimonials / Clients (simple grid, no bullets) --------- */
+
 .testimonials-list{ display:grid; gap:12px; }
+
 .content-card{ padding:16px; background:var(--card); border:1px solid rgba(15,23,42,.08); border-radius:var(--r-sm); box-shadow:var(--shadow-sm); }
+
 .testimonials-avatar-box{ margin-bottom:8px; }
+
 .testimonials-item-title{ color:var(--ink-900); margin:0 0 4px; }
+
 .testimonials-text p{ margin:0; }
 
+
+
 .clients-list{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+
 .clients-item a{ display:block; background:#fff; border:1px solid rgba(15,23,42,.08); border-radius:12px; padding:10px; box-shadow:var(--shadow-sm); }
 
+
+
 /* modal (kept minimal since your JS controls it) */
+
 .modal-container{ position:fixed; inset:0; z-index:50; display:none; }
+
 .modal-container.active{ display:block; }
+
 [data-overlay]{ position:absolute; inset:0; background:rgba(0,0,0,.5); }
+
 .testimonials-modal{ position:relative; z-index:1; max-width:720px; margin:60px auto; background:#fff; border-radius:16px; padding:20px; box-shadow:var(--shadow-md); }
+
 .modal-close-btn{ position:absolute; top:10px; right:10px; }
 
+
+
 /* --------- Resume: timeline + skills bars (FIX #4) --------- */
+
 .timeline{ margin-top:6px; }
+
 .title-wrapper{ display:flex; align-items:center; gap:10px; }
+
 .title-wrapper > .icon-box{ width:36px; height:36px; display:grid; place-items:center; background:#fff; border:1px solid rgba(15,23,42,.08); border-radius:10px; color:var(--accent); box-shadow:var(--shadow-sm); }
 
+
+
 .timeline-list{ margin:0; }
+
 .timeline-item{ position:relative; padding-left:16px; margin:0 0 16px; }
+
 .timeline-item::before{
+
   content:""; position:absolute; left:0; top:8px; width:8px; height:8px; border-radius:50%;
+
   background:var(--accent); box-shadow:0 0 0 3px rgba(254,174,174,.28);
+
 }
+
 .timeline-item-title{ margin:0 0 4px; color:var(--ink-900); font-size:16px; }
+
 .timeline-text{ margin:0; }
 
+
+
 .skill{ margin-top:10px; }
+
 .skills-title{ margin:0 0 10px; color:var(--ink-900); }
+
 .skills-list.content-card{ padding:16px; }
+
 .skills-item + .skills-item{ margin-top:14px; }
+
 .skills-item .title-wrapper{ display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:6px; }
+
 .skills-item .h5{ margin:0; color:var(--ink-900); font-weight:600; }
+
 .skills-item data{ color:var(--ink-500); font-weight:600; }
+
 .skill-progress-bg{
+
   width:100%; height:10px; background:#EEF2FF; border:1px solid rgba(15,23,42,.08);
+
   border-radius:999px; overflow:hidden;
+
 }
+
 .skill-progress-fill{
+
   height:100%; border-radius:999px; background:linear-gradient(90deg,var(--accent),#ffd6d6);
+
   width:0%; /* inline width on each li sets actual % */
+
 }
+
+
 
 /* --------- Portfolio cards (no bullets, card look) --------- */
+
 .filter-list{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px; }
+
 .filter-item button{ padding:8px 12px; border-radius:999px; background:#F3F4F6; }
+
 .filter-item .active{ background:var(--accent); color:#111; }
 
+
+
 .project-list{ display:grid; grid-template-columns:1fr; gap:16px; }
+
 .project-item{ display:none; }                 /* JS toggles .active */
+
 .project-item.active{ display:block; }
+
 .project-item > a{ display:block; background:#fff; border:1px solid rgba(15,23,42,.08); border-radius:var(--r-sm); box-shadow:var(--shadow-sm); overflow:hidden; }
+
 .project-img{ aspect-ratio:16/10; overflow:hidden; }
+
 .project-title{ color:var(--ink-900); margin:8px 12px 4px; font-weight:600; }
+
 .project-category{ color:var(--ink-500); margin:0 12px 12px; }
 
+
+
 /* --------- Contact --------- */
+
 .mapbox{ border:1px solid rgba(15,23,42,.08); border-radius:var(--r-sm); overflow:hidden; margin-bottom:16px; }
+
 .mapbox iframe{ width:100%; height:auto; aspect-ratio:16/10; border:0; }
+
 .form{ display:block; }
+
 .form-title{ margin:0 0 12px; color:var(--ink-900); }
+
 .input-wrapper{ display:grid; grid-template-columns:1fr; gap:14px; }
+
 .form-input{ width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(15,23,42,.12); background:#fff; color:var(--ink-900); }
+
 .form-input::placeholder{ color:#9CA3AF; }
+
 .form-input:focus{ outline:2px solid var(--accent); border-color:var(--accent); }
+
 textarea.form-input{ min-height:110px; resize:vertical; }
+
 .form-btn{ display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px; background:var(--accent); color:#111; font-weight:600; box-shadow:var(--shadow-sm); }
+
 .form-btn[disabled]{ opacity:.6; cursor:not-allowed; }
 
+
+
 /* --------- responsive --------- */
+
 @media (min-width:768px){
+
   main{ margin:20px auto 104px; padding:0 24px; }
+
   .avatar-box img{ width:150px; }
+
   .service-list{ grid-template-columns:1fr 1fr; gap:16px; }
+
   .clients-list{ grid-template-columns:repeat(6,1fr); }
+
   .input-wrapper{ grid-template-columns:1fr 1fr; }
+
   .project-list { grid-template-columns:1fr 1fr; gap:20px; }
+
 }
+
+
 
 @media (min-width:1200px){
+
   main{ margin:28px auto 40px; padding:0 28px; display:grid; grid-template-columns:340px minmax(0,1fr); gap:28px; max-width:1280px; }
+
   .sidebar{ position:sticky; top:28px; height:auto; box-shadow:var(--shadow-md); }
+
   .sidebar-info{ flex-direction:column; align-items:center; text-align:center; }
+
   .avatar-box img{ width:220px; }
+
   .info_more-btn{ display:none; }                 /* contacts always visible on desktop */
+
   .sidebar-info_more{ max-height:none; opacity:1; visibility:visible; }
 
+
+
   .main-content{ padding-bottom:0; }
+
   .navbar{ position:sticky; top:0; bottom:auto; border-radius:var(--r-sm); margin-bottom:var(--gap); }
+
   .project-list{ grid-template-columns:repeat(3,1fr); gap:24px; }
+
 }
 
+
+
 /* ===== FIX #1: mobile sidebar layout (clean, centered, no weird overlaps) ===== */
+
 @media (max-width: 767px){
+
+
 
   .sidebar{ padding:18px; }
 
+
+
   /* stack avatar → name → title → button vertically */
+
   .sidebar-info{
+
     display:flex;
+
     flex-direction:column;
+
     align-items:center;
+
     text-align:center;
+
     gap:10px;
+
   }
 
+
+
   .avatar-box img{
+
     width:150px;
+
   }
+
+
 
   .info-content{ width:100%; }
 
+
+
   .info-content .name{
+
     margin:4px 0 2px;
+
     line-height:1.25;
+
     white-space:normal;          /* stop weird single-word line breaks */
+
     word-break:keep-all;
+
   }
+
+
 
   /* make the role a proper pill, not a circle */
+
   .info-content .title{
+
     display:inline-flex;
+
     align-items:center;
+
     justify-content:center;
+
     min-height:36px;
+
     padding:8px 12px;
+
     margin-top:3px;
+
     max-width:400px;
+
     border-radius:999px;
+
     background:#F3F4F6;
+
     color:#111;
+
     white-space:normal;
+
   }
+
+
 
   /* full-width “Show Contacts” button under the title */
+
   .info_more-btn{
+
     width:100%;
+
     justify-content:center;
+
     padding:10px 12px;
+
     border-radius:999px;
+
     margin-top:6px;
+
   }
+
+
 
   /* contacts expand inline (no overlay) with tidy spacing */
+
   .sidebar-info_more{
+
     margin-top:10px;
+
   }
+
 }
+
+
 
 /* keep contact rows perfectly aligned on all sizes */
+
 .contacts-list{
+
   display:grid;
+
   grid-template-columns:1fr;
+
   gap:12px;
+
 }
+
 .contact-item{
+
   display:grid;
+
   grid-template-columns:38px 1fr;
+
   align-items:center;
+
   gap:12px;
+
   background:#F9FAFB;
+
   border:1px solid rgba(15,23,42,.06);
+
   border-radius:12px;
+
   padding:10px 12px;
+
 }
+
 .contact-title{ color:#6B7280; font-size:17px; text-transform:uppercase; margin:0 0 4px; }
+
 .contact-link, .contact-info address{ color:#0F172A; font-size: 15px;}
 
+
+
 /* ===== FIX #2: portfolio filters — show pills only, hide the dropdown ===== */
+
 .filter-select-box{ display:none !important; }  /* hide the duplicate select UI */
+
 .filter-list{
+
   display:flex !important;
+
   flex-wrap:wrap;
+
   gap:10px;
+
   margin-bottom:12px;
+
 }
+
 .filter-item button{
+
   padding:8px 12px;
+
   border-radius:999px;
+
   background:#F3F4F6;
+
 }
+
 .filter-item button.active{
+
   background:var(--accent);
+
   color:#111;
+
 }
+
+
 
 /* === Desktop/tablet only: sidebar should fit its content === */
+
 @media (min-width: 768px){
+
   /* make sure the flex row doesn't stretch the sidebar vertically */
+
   main{ align-items: flex-start; }
 
+
+
   .sidebar{
+
     height: fit-content !important;    /* shrink-wrap */
+
     max-height: none !important;       /* remove any caps */
+
     overflow: visible !important;      /* no internal scrollbar */
+
     padding: 22px 24px;                /* compact padding */
+
   }
 
+
+
   /* ignore the mobile "active" height cap on larger screens */
+
   .sidebar.active{ max-height: none !important; }
 
+
+
   /* slightly tighter spacing so the card is shorter */
+
   .sidebar .separator{ margin: 12px 0; }
+
   .contacts-list{ gap: 10px; }
+
 }
+
 /* === Overrides: Service cards (What I'm doing) ========================= */
+
 :root{
+
   /* if these already exist in your theme, this safely falls back */
+
   --kp-card-bg: #0f172a;           /* dark navy surface */
+
   --kp-card-bg-hover: #0b1220;     /* slightly darker on hover */
+
   --kp-card-border: #1f2a44;       /* subtle border */
+
   --kp-card-text: #e8eef8;         /* primary text on card */
+
   --kp-card-muted: #b8c2d9;        /* secondary text on card */
+
   --kp-icon-bg: rgba(255,255,255,0.06);
+
 }
+
+
 
 .service .service-list{
+
   list-style: none;                 /* kill any bullets everywhere */
+
   margin: 0;
+
   padding: 0;
+
   display: grid;
+
   grid-template-columns: repeat(2, minmax(260px,1fr));
+
   gap: 24px;
+
 }
+
 @media (max-width: 768px){
+
   .service .service-list{ grid-template-columns: 1fr; }
+
 }
+
+
 
 .service .service-item{
+
   background: var(--kp-card-bg);
+
   color: var(--kp-card-text);
+
   border: 1px solid var(--kp-card-border);
+
   border-radius: 16px;
+
   box-shadow: 0 8px 24px rgba(3, 7, 18, 0.25);
+
   padding: 20px;
+
   display: grid;
+
   grid-template-columns: 56px 1fr;
+
   gap: 16px;
+
   align-items: start;
+
 }
+
 .service .service-item:hover{
+
   background: var(--kp-card-bg-hover);
+
   transform: translateY(-2px);
+
   transition: background .2s ease, transform .2s ease;
+
 }
+
+
 
 .service .service-icon-box{
+
   width: 56px;
+
   height: 56px;
+
   border-radius: 12px;
+
   background: var(--kp-icon-bg);
+
   display: grid;
+
   place-items: center;
+
   flex: 0 0 auto;
+
 }
+
 .service .service-icon-box ion-icon,
+
 .service .service-icon-box img{
+
   width: 24px; height: 24px;
+
   color: var(--kp-card-text);
+
   opacity: .95;
+
 }
+
+
 
 .service .service-content-box{
+
   color: var(--kp-card-text);
+
 }
+
 .service .service-item-title{
+
   color: var(--kp-card-text);
+
   font-weight: 700;
+
   margin: 0 0 6px;
+
 }
+
 .service .service-item-text{
+
   color: var(--kp-card-muted);
+
   line-height: 1.55;
+
   margin: 0;
+
 }
+
 /* === Kristine theme: bright, positive, professional =================== */
+
 :root{
+
   /* Palette */
+
   --kp-bg:        #f7fafc;   /* page background (very light) */
+
   --kp-surface:   #ffffff;   /* cards, sidebar, nav */
+
   --kp-border:    #e2e8f0;   /* subtle borders */
+
   --kp-text:      #0f172a;   /* headings / primary text (navy) */
+
   --kp-muted:     #475569;   /* body text (slate) */
 
+
+
   /* Accent = Sunrise Coral (friendly but professional) */
+
   --kp-accent:        #ff6b6b;
+
   --kp-accent-600:    #ff4d4d;
+
   --kp-accent-soft:   #fff1f1;
 
+
+
   --kp-radius-lg: 16px;
+
   --kp-radius-md: 12px;
+
   --kp-shadow: 0 10px 24px rgba(15,23,42,.06);
+
 }
 
+
+
 /* Base */
+
 html, body { background: var(--kp-bg); color: var(--kp-text); }
+
 h1,h2,h3,h4,h5,h6 { color: var(--kp-text); }
+
 p, li, address, time { color: var(--kp-muted); }
+
 a { color: var(--kp-accent); text-decoration: none; }
+
 a:hover { color: var(--kp-accent-600); }
 
+
+
 /* Kill any stray bullets globally on UI lists */
+
 .contacts-list, .service-list, .skills-list, .project-list,
+
 .testimonials-list, .filter-list { list-style: none; padding: 0; margin: 0; }
+
+
 
 .navbar-list { list-style: none; padding: 1; margin: 0; }
 
+
+
 /* Sidebar (contact card) */
+
 .sidebar{
+
   background: var(--kp-surface);
+
   border: 1px solid var(--kp-border);
+
   border-radius: var(--kp-radius-lg);
+
   box-shadow: var(--kp-shadow);
+
 }
+
 .sidebar .name{ color: var(--kp-text); }
+
 .sidebar .title{ color: var(--kp-muted); }
+
 .sidebar .separator{ background: var(--kp-border); }
+
 .icon-box{
+
   background: var(--kp-accent-soft);
+
   border-radius: 12px;
+
 }
+
 .icon-box ion-icon{ color: var(--kp-accent); }
+
 .contact-title{ color: var(--kp-muted); }
+
 .contact-link{ color: var(--kp-text); }
+
 .contact-link:hover{ color: var(--kp-accent); }
+
 .info_more-btn{
+
   background: var(--kp-accent);
+
   color:#fff;
+
   border-radius: 9999px;
+
 }
+
 .info_more-btn:hover{ background: var(--kp-accent-600); }
 
+
+
 /* Navbar */
+
 .navbar{
+
   background: var(--kp-surface);
+
   border: 1px solid var(--kp-border);
+
   border-radius: var(--kp-radius-lg);
+
   box-shadow: var(--kp-shadow);
+
 }
+
 .navbar-link{
+
   color: var(--kp-muted);
+
   border-radius: 9999px;
+
 }
+
 .navbar-link.active,
+
 .navbar-link:hover{
+
   background: var(--kp-accent);
+
   color:#fff;
+
 }
+
+
 
 /* Section headers */
+
 .article-title, .service-title, .skills-title, .clients-title, .form-title{
+
   color: var(--kp-text);
+
 }
+
+
 
 /* What I'm doing (service cards) */
+
 .service .service-list{
+
   display: grid; gap: 24px;
+
   grid-template-columns: repeat(2, minmax(260px,1fr));
+
 }
+
 @media (max-width: 768px){ .service .service-list{ grid-template-columns: 1fr; } }
 
+
+
 .service .service-item{
+
   background: var(--kp-surface);
+
   border: 1px solid var(--kp-border);
+
   border-radius: var(--kp-radius-lg);
+
   box-shadow: var(--kp-shadow);
+
   padding: 20px;
+
   display: grid; grid-template-columns: 56px 1fr; gap: 16px;
+
 }
+
 .service .service-item:hover{ transform: translateY(-2px); transition: .2s; }
+
 .service .service-item-title{ color: var(--kp-text); margin: 0 0 6px; font-weight: 700; }
+
 .service .service-item-text{ color: var(--kp-muted); margin: 0; }
 
+
+
 /* Skills */
+
 .skills-list.content-card{
+
   background: var(--kp-surface);
+
   border: 1px solid var(--kp-border);
+
   border-radius: var(--kp-radius-lg);
+
   box-shadow: var(--kp-shadow);
+
   padding: 16px;
+
 }
+
 .skill-progress-bg{
+
   height: 8px; border-radius: 9999px; background: #eef2f7;
+
 }
+
 .skill-progress-fill{
+
   height: 8px; border-radius: 9999px; background: var(--kp-accent);
+
 }
+
+
 
 /* Portfolio filters — chips only (hide the duplicate dropdown) */
+
 .filter-select-box{ display:none; }
+
 .filter-list{ display:flex; flex-wrap:wrap; gap: 10px; margin-bottom: 16px; }
+
 .filter-list .filter-item button{
+
   border:1px solid var(--kp-border);
+
   background:#fff; color: var(--kp-muted);
+
   padding: 8px 14px; border-radius:9999px;
+
 }
+
 .filter-list .filter-item button.active{
+
   background: var(--kp-accent); border-color: var(--kp-accent); color:#fff;
+
   box-shadow: 0 6px 14px rgba(255,107,107,.25);
+
 }
+
+
 
 /* Project, testimonial cards */
+
 .project-item a,
+
 .content-card{
+
   display:block;
+
   background: var(--kp-surface);
+
   border:1px solid var(--kp-border);
+
   border-radius: var(--kp-radius-lg);
+
   box-shadow: var(--kp-shadow);
+
   padding: 12px;
+
   color: var(--kp-text);
+
 }
+
 .project-img img, .testimonials-avatar-box img{ border-radius: var(--kp-radius-md); }
 
+
+
 /* Contact form */
+
 .form .form-input{
+
   background:#fff; color: var(--kp-text);
+
   border:1px solid var(--kp-border);
+
   border-radius: 10px; padding: 12px 14px;
+
 }
+
 .form .form-input:focus{ outline:none; border-color: var(--kp-accent); box-shadow: 0 0 0 3px var(--kp-accent-soft); }
+
 .form-btn{
+
   background: var(--kp-accent); color:#fff; border:0;
+
   border-radius: 12px; padding: 10px 16px;
+
 }
+
 .form-btn:hover{ background: var(--kp-accent-600); }
 
+
+
 /* Map & modal polish */
+
 .mapbox figure{ border-radius: var(--kp-radius-lg); overflow:hidden; border:1px solid var(--kp-border); }
+
 .overlay.active{ background: rgba(15,23,42,.55); }
+
+
 
 /* === What I'm doing — make content visible + friendly hover === */
 
+
+
 /* Layout stays; kill any dark overlay the old theme adds */
+
 .service .service-item::before,
+
 .service .service-item::after { display: none !important; content: none !important; }
 
+
+
 /* Card base */
+
 .service .service-item{
+
   background: var(--kp-surface);               /* stays light */
+
   border: 1px solid var(--kp-border);
+
   border-radius: var(--kp-radius-lg);
+
   box-shadow: var(--kp-shadow);
+
   padding: 20px;
+
   display: grid;
+
   grid-template-columns: 56px 1fr;
+
   gap: 16px;
+
   transition: background .18s ease, border-color .18s ease,
+
               box-shadow .18s ease, transform .18s ease;
+
 }
+
+
 
 /* Text colors always readable */
+
 .service .service-item-title{ color: var(--kp-text); margin: 0 0 6px; font-weight: 700; }
+
 .service .service-item-text{ color: var(--kp-muted); margin: 0; opacity: .95; transition: opacity .18s ease; }
 
+
+
 /* Hover/focus: subtle lift + soft accent background (not dark) */
+
 .service .service-item:hover,
+
 .service .service-item:focus-within{
+
   background: var(--kp-accent-soft);
+
   border-color: var(--kp-accent);
+
   box-shadow: 0 12px 28px rgba(255,107,107,.18);
+
   transform: translateY(-2px);
+
 }
+
 .service .service-item:hover .service-item-text{ opacity: 1; }
 
+
+
 /* Icon container + icon colors */
+
 .service .service-icon-box{
+
   width: 56px; height: 56px;
+
   display: flex; align-items: center; justify-content: center;
+
   border-radius: 14px;
+
   background: var(--kp-accent-soft);
+
   border: 1px solid color-mix(in srgb, var(--kp-accent) 25%, white);
+
 }
+
 .service .service-icon-box ion-icon{
+
   font-size: 28px;
+
   color: var(--kp-accent);                      /* accent color for ionicons */
+
 }
+
+
 
 /* Keep icon visible on hover */
+
 .service .service-item:hover .service-icon-box{
+
   background: #fff;
+
   border-color: var(--kp-accent);
+
 }
 
+
+
 /* Recolor the SVG <img> icon to the same accent tone */
+
 .service .service-icon-box img{
+
   width: 28px; height: 28px; display: block;
+
   filter: brightness(0) saturate(100%) invert(50%) sepia(56%)
+
           saturate(1425%) hue-rotate(-5deg) brightness(103%) contrast(103%);
+
 }

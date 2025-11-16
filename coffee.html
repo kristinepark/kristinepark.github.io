@@ -2,65 +2,192 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coffee Rating Analysis: Data-Driven Sales Strategy</title>
-    </head>
+
+    <style>
+        /* --- Tokens and Base Setup --- */
+        :root{
+            --accent:#FEAEAE;
+            --ink-900:#0F172A;   
+            --ink-700:#334155;  
+            --ink-500:#64748B;   
+            --ink-300:#E5E7EB;   
+            --bg:#FAFAFA;        
+            --card:#FFFFFF;      
+            --shadow-sm:0 6px 18px rgba(15,23,42,.06);
+            --shadow-md:0 14px 34px rgba(15,23,42,.10);
+            --r-sm:14px; --r-md:18px; --r-lg:22px;
+            --pad:20px; --gap:18px;
+            --fs-base:clamp(14px,1.5vw,16px);
+            
+            /* Kristine Theme Overrides */
+            --kp-bg:        #f7fafc;   
+            --kp-surface:   #ffffff;  
+            --kp-border:    #e2e8f0;   
+            --kp-text:      #0f172a;   
+            --kp-muted:     #475569;   
+            --kp-accent:        #ff6b6b;
+            --kp-accent-600:    #ff4d4d;
+            --kp-accent-soft:   #fff1f1;
+            --kp-radius-lg: 16px;
+            --kp-radius-md: 12px;
+            --kp-shadow: 0 10px 24px rgba(15,23,42,.06);
+        }
+
+        /* --- Reset --- */
+        *,
+        *::before,*::after{ box-sizing:border-box; }
+        html,body{ margin:0;padding:0; font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; font-size:var(--fs-base); color:var(--kp-muted); background:var(--kp-bg); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; overflow-x:hidden; }
+        img,video,iframe{ max-width:100%; height:auto; display:block; }
+        a{ color:inherit; text-decoration:none; }
+        button{ font:inherit; border:0; background:none; cursor:pointer; }
+        ul,ol{ list-style:none; margin:0; padding:0; } 
+        h1,h2,h3,h4,h5,h6 { color: var(--kp-text); }
+        p, li, address, time { color: var(--kp-muted); }
+        a { color: var(--kp-accent); text-decoration: none; }
+        a:hover { color: var(--kp-accent-600); }
+        .contacts-list, .service-list, .skills-list, .project-list,
+        .testimonials-list, .filter-list { list-style: none; padding: 0; margin: 0; }
+
+        /* --- Layout --- */
+        main{ max-width:1120px; margin:16px auto 96px; padding:0 16px; }
+        section{ background:var(--kp-surface); border:1px solid var(--kp-border); border-radius:var(--kp-radius-lg); box-shadow:var(--kp-shadow); padding:var(--pad); margin-bottom:var(--gap); }
+        article.active{ display:block; }
+
+        /* --- Headings --- */
+        h1, h2, h3, h4 { color:var(--kp-text); }
+        .h2.article-title, h2{ color:var(--kp-text); margin:0 0 10px; font-weight:600; position:relative; padding-bottom:6px; }
+        h2::after{ content:""; position:absolute; left:0; bottom:0; width:42px; height:3px; background:var(--kp-accent); border-radius:3px; }
+
+        /* --- Custom Styles for Report Content (based on Kristine Theme) --- */
+        section {
+            background: var(--kp-surface);
+            border: 1px solid var(--kp-border);
+            border-radius: var(--kp-radius-lg);
+            box-shadow: var(--kp-shadow);
+            padding: 30px; /* Increased padding for main sections */
+            margin-bottom: 24px;
+        }
+        
+        /* Image styling */
+        section img {
+            border-radius: var(--kp-radius-md);
+            border: 1px solid var(--kp-border);
+            box-shadow: var(--shadow-sm);
+            margin: 15px 0 20px 0;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* List styling for recommendations */
+        ul {
+            list-style: disc;
+            padding-left: 25px;
+            margin-top: 15px;
+        }
+        ul li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        /* IFRAME for embedded HTML tables */
+        iframe {
+            border: 1px solid var(--kp-border);
+            border-radius: var(--kp-radius-md);
+            margin-top: 15px;
+            width: 100%;
+            height: 250px;
+        }
+
+        /* Footer styling */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--kp-muted);
+            font-size: 0.9em;
+            border-top: 1px solid var(--kp-border);
+            margin-top: 30px;
+        }
+
+        /* Headings for better separation */
+        section h3 {
+            margin-top: 25px;
+            color: var(--kp-accent);
+            font-weight: 600;
+        }
+        
+        /* Specific content enhancements */
+        p strong {
+            color: var(--kp-text);
+        }
+    </style>
+</head>
 <body>
-    <header>
-        <h1>Coffee Market Analysis: Data-Driven Sales Strategy</h1>
-        <p>A portfolio project analyzing 1,300+ coffee reviews to identify key market segments, understand the language of quality, and provide actionable recommendations to strengthen e-commerce sales.</p>
-    </header>
+    <main>
+        <header>
+            <h1>Coffee Market Analysis: Data-Driven Sales Strategy</h1>
+            <p>A portfolio project analyzing 1,300+ coffee reviews to identify key market segments, understand the language of quality, and provide actionable recommendations to strengthen e-commerce sales.</p>
+        </header>
 
-    <section>
-        <h2>Phase 1: Data Preparation & Exploration</h2>
-        <p>The dataset was cleaned by dropping null values and removing duplicated/irrelevant columns. Text data was pre-processed using NLTK (tokenization, stop-word removal) to prepare for sentiment analysis.</p>
+        <section>
+            <h2>Phase 1: Data Preparation & Exploration</h2>
+            <p>The dataset was cleaned by dropping null values and removing duplicated/irrelevant columns. Text data was pre-processed using NLTK (tokenization, stop-word removal) and VADER sentiment analysis to prepare the data for subsequent modeling.</p>
 
-        <h3>Rating Distribution</h3>
-        <p>The dataset exhibits a strong skew towards high ratings, indicating the source data is highly curated.</p>
-        <img src="rating_distribution.png" alt="Histogram of coffee ratings.">
-    </section>
+            <h3>Rating Distribution</h3>
+            <p>The dataset exhibits a strong skew towards high ratings, indicating the source data is highly curated and focuses on specialty-grade coffees.</p>
+            <img src="rating_distribution.png" alt="Histogram of coffee ratings.">
+        </section>
 
-    <section>
-        <h2>Phase 2: Market Segmentation via K-Means Clustering</h2>
-        <p>K-Means was applied to the normalized features **Rating, Price (100g_USD), and Sentiment (Compound Score)**. The optimal number of clusters was determined to be four.</p>
+        <section>
+            <h2>Phase 2: Process Automation & Data Collection</h2>
+            <p>A full-lifecycle solution was designed to automate data collection and quality control, demonstrating an ability to design the data pipeline, not just analyze the output.</p>
+            <p>This system uses **Formstack** to create digital submission forms for roasters and internal Quality Control (QC) checks, with the data pipe-lined directly into **Smartsheet** as the central, collaborative database.</p>
+            <p>Crucially, **Smartsheet Flow Automation** was implemented to trigger immediate alerts to the QC team when a new entry registers a rating below 89 points or contains low-rated keywords like "scorched," ensuring rapid intervention and preventing low-quality products from reaching the market. This creates a powerful, automated feedback loop.</p>
+        </section>
 
-        <h3>Segment Visualization</h3>
-        <img src="cluster_visualization.png" alt="Scatter plot showing 4 distinct customer clusters.">
+        <section>
+            <h2>Phase 3: Market Segmentation via K-Means Clustering</h2>
+            <p>K-Means was applied to the normalized features **Rating, Price (100g_USD), and Sentiment (Compound Score)**. The optimal number of clusters was determined to be four, revealing distinct customer segments.</p>
 
-        <h3>Cluster Characteristics</h3>
-        <p>The four clusters reveal distinct market segments, from the high-volume, lower-price 'Daily Drinker' to the extremely high-value 'Luxury Collector'.</p>
-        <iframe src="cluster_summary.html" width="100%" height="200px" frameborder="0"></iframe>
-    </section>
+            <h3>Segment Visualization</h3>
+            <img src="cluster_visualization.png" alt="Scatter plot showing 4 distinct customer clusters.">
 
-    <section>
-        <h2>Phase 3: The Language of Quality (Keyword Analysis)</h2>
-        <p>Positive keywords from the highest-rated coffees (95+ points) were extracted to understand consumer language.</p>
+            <h3>Cluster Characteristics</h3>
+            <p>The four clusters reveal distinct market segments, from the high-volume, lower-price 'Daily Drinker' to the extremely high-value 'Luxury Collector'. The strategy must be tailored to these groups.</p>
+            <iframe src="cluster_summary.html" width="100%" height="250px" frameborder="0"></iframe>
+        </section>
 
-        <h3>Top Keywords in High-Rated Coffees (95+)</h3>
-        <p>The highest-rated coffees are described using **technical, structure-focused language**, confirming the target consumer is sophisticated.</p>
-        <iframe src="high_keywords.html" width="100%" height="200px" frameborder="0"></iframe>
-    </section>
-    
-    <section>
-        <h2>Phase 4: Actionable Sales Recommendations</h2>
-        <p>By cross-referencing data insights with the marketing strategies of leading competitor websites (Kakalove Cafe, JBC Roasters, Paradise Roasters), we propose a 3-point strategy to strengthen sales:</p>
+        <section>
+            <h2>Phase 4: The Language of Quality (Keyword Analysis)</h2>
+            <p>Positive keywords from the highest-rated coffees (95+ points) were extracted to understand consumer language and identify selling points.</p>
 
-        <h3>1. Data-Driven Product Descriptions</h3>
-        <p>Use the high-frequency terms: **'mouthfeel,' 'structure,' 'finish,'** and **'juicy'** directly in product copy. This validates the product's quality for the technical consumer.</p>
+            <h3>Top Keywords in High-Rated Coffees (95+)</h3>
+            <p>The highest-rated coffees are described using **technical, structure-focused language**, confirming the target consumer is sophisticated and values complex attributes beyond simple flavor notes.</p>
+            <iframe src="high_keywords.html" width="100%" height="250px" frameborder="0"></iframe>
+        </section>
+        
+        <section>
+            <h2>Phase 5: Strategic Recommendations</h2>
+            <p>By cross-referencing data insights with the marketing strategies of leading competitor websites (Kakalove Cafe, JBC Roasters, Paradise Roasters), we propose a 3-point strategy to strengthen sales:</p>
 
-        <h3>2. Targeted Segmentation and Branding</h3>
-        <ul>
-            <li>**For High-End Beans:** Adopt **The Paradise Roasters Strategy** (luxury marketing, scarcity, 'Allocation Lists').</li>
-            <li>**For High-Rated, Mid-Price Beans:** Adopt **The JBC Strategy** (human story, sustainability, strong social proof).</li>
-            <li>**For All Beans:** Use the **Rating Score** prominently, as seen on the **Kakalove Cafe** website, to build immediate consumer trust.</li>
-        </ul>
+            <h3>1. Data-Driven Product Descriptions</h3>
+            <p>Use the high-frequency terms: **'mouthfeel,' 'structure,' 'finish,'** and **'juicy'** directly in product copy. This validates the product's quality for the technical consumer.</p>
 
-        <h3>3. Eliminate Defects</h3>
-        <p>The low-rated keywords like **'scorched'** and **'fir'** indicate technical faults. Quality control must ensure these defects are eliminated, as they are a direct barrier to achieving high ratings and customer satisfaction.</p>
+            <h3>2. Targeted Segmentation and Branding</h3>
+            <ul>
+                <li>**For Luxury Collectors (Highest Cluster):** Adopt **The Paradise Roasters Strategy** (luxury marketing, scarcity, 'Allocation Lists').</li>
+                <li>**For Quality Enthusiasts (Mid-High Cluster):** Adopt **The JBC Strategy** (human story, sustainability, strong social proof).</li>
+                <li>**For All Coffees:** Use the **Coffee Review Rating Score** prominently, as seen on the **Kakalove Cafe** website, to build immediate consumer trust.</li>
+            </ul>
 
-    </section>
+            <h3>3. Automate Defect Prevention</h3>
+            <p>The low-rated keywords like **'scorched'** and **'fir'** indicate technical faults. The automated Smartsheet flow (Phase 2) is critical for ensuring these defects are identified and eliminated at the QC level before they reach the consumer, protecting brand integrity.</p>
+        </section>
 
-    <footer>
-        <p>Data Source: Coffee Review. Project by [Your Name].</p>
-    </footer>
+        <footer>
+            <p>Data Source: Coffee Review. Project by [Your Name]. | Process Automation: Formstack & Smartsheet Flow.</p>
+        </footer>
+    </main>
 </body>
 </html>
