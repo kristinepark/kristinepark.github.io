@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee Rating Analysis: Data-Driven Sales Strategy</title>
+    </head>
+<body>
+    <header>
+        <h1>Coffee Market Analysis: Data-Driven Sales Strategy</h1>
+        <p>A portfolio project analyzing 1,300+ coffee reviews to identify key market segments, understand the language of quality, and provide actionable recommendations to strengthen e-commerce sales.</p>
+    </header>
+
+    <section>
+        <h2>Phase 1: Data Preparation & Exploration</h2>
+        <p>The dataset was cleaned by dropping null values and removing duplicated/irrelevant columns. Text data was pre-processed using NLTK (tokenization, stop-word removal) to prepare for sentiment analysis.</p>
+
+        <h3>Rating Distribution</h3>
+        <p>The dataset exhibits a strong skew towards high ratings, indicating the source data is highly curated.</p>
+        <img src="rating_distribution.png" alt="Histogram of coffee ratings.">
+    </section>
+
+    <section>
+        <h2>Phase 2: Market Segmentation via K-Means Clustering</h2>
+        <p>K-Means was applied to the normalized features **Rating, Price (100g_USD), and Sentiment (Compound Score)**. The optimal number of clusters was determined to be four.</p>
+
+        <h3>Segment Visualization</h3>
+        <img src="cluster_visualization.png" alt="Scatter plot showing 4 distinct customer clusters.">
+
+        <h3>Cluster Characteristics</h3>
+        <p>The four clusters reveal distinct market segments, from the high-volume, lower-price 'Daily Drinker' to the extremely high-value 'Luxury Collector'.</p>
+        <iframe src="cluster_summary.html" width="100%" height="200px" frameborder="0"></iframe>
+    </section>
+
+    <section>
+        <h2>Phase 3: The Language of Quality (Keyword Analysis)</h2>
+        <p>Positive keywords from the highest-rated coffees (95+ points) were extracted to understand consumer language.</p>
+
+        <h3>Top Keywords in High-Rated Coffees (95+)</h3>
+        <p>The highest-rated coffees are described using **technical, structure-focused language**, confirming the target consumer is sophisticated.</p>
+        <iframe src="high_keywords.html" width="100%" height="200px" frameborder="0"></iframe>
+    </section>
+    
+    <section>
+        <h2>Phase 4: Actionable Sales Recommendations</h2>
+        <p>By cross-referencing data insights with the marketing strategies of leading competitor websites (Kakalove Cafe, JBC Roasters, Paradise Roasters), we propose a 3-point strategy to strengthen sales:</p>
+
+        <h3>1. Data-Driven Product Descriptions</h3>
+        <p>Use the high-frequency terms: **'mouthfeel,' 'structure,' 'finish,'** and **'juicy'** directly in product copy. This validates the product's quality for the technical consumer.</p>
+
+        <h3>2. Targeted Segmentation and Branding</h3>
+        <ul>
+            <li>**For High-End Beans:** Adopt **The Paradise Roasters Strategy** (luxury marketing, scarcity, 'Allocation Lists').</li>
+            <li>**For High-Rated, Mid-Price Beans:** Adopt **The JBC Strategy** (human story, sustainability, strong social proof).</li>
+            <li>**For All Beans:** Use the **Rating Score** prominently, as seen on the **Kakalove Cafe** website, to build immediate consumer trust.</li>
+        </ul>
+
+        <h3>3. Eliminate Defects</h3>
+        <p>The low-rated keywords like **'scorched'** and **'fir'** indicate technical faults. Quality control must ensure these defects are eliminated, as they are a direct barrier to achieving high ratings and customer satisfaction.</p>
+
+    </section>
+
+    <footer>
+        <p>Data Source: Coffee Review. Project by [Your Name].</p>
+    </footer>
+</body>
+</html>
