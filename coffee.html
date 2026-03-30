@@ -1,193 +1,410 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coffee Rating Analysis: Data-Driven Sales Strategy</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee Weather Analysis — Kristine Park</title>
 
-    <style>
-        /* --- Tokens and Base Setup --- */
-        :root{
-            --accent:#FEAEAE;
-            --ink-900:#0F172A;   
-            --ink-700:#334155;  
-            --ink-500:#64748B;   
-            --ink-300:#E5E7EB;   
-            --bg:#FAFAFA;        
-            --card:#FFFFFF;      
-            --shadow-sm:0 6px 18px rgba(15,23,42,.06);
-            --shadow-md:0 14px 34px rgba(15,23,42,.10);
-            --r-sm:14px; --r-md:18px; --r-lg:22px;
-            --pad:20px; --gap:18px;
-            --fs-base:clamp(14px,1.5vw,16px);
-            
-            /* Kristine Theme Overrides */
-            --kp-bg:        #f7fafc;   
-            --kp-surface:   #ffffff;  
-            --kp-border:    #e2e8f0;   
-            --kp-text:      #0f172a;   
-            --kp-muted:     #475569;   
-            --kp-accent:        #ff6b6b;
-            --kp-accent-600:    #ff4d4d;
-            --kp-accent-soft:   #fff1f1;
-            --kp-radius-lg: 16px;
-            --kp-radius-md: 12px;
-            --kp-shadow: 0 10px 24px rgba(15,23,42,.06);
-        }
+  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/css/style.css">
 
-        /* --- Reset --- */
-        *,
-        *::before,*::after{ box-sizing:border-box; }
-        html,body{ margin:0;padding:0; font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; font-size:var(--fs-base); color:var(--kp-muted); background:var(--kp-bg); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; overflow-x:hidden; }
-        img,video,iframe{ max-width:100%; height:auto; display:block; }
-        a{ color:inherit; text-decoration:none; }
-        button{ font:inherit; border:0; background:none; cursor:pointer; }
-        ul,ol{ list-style:none; margin:0; padding:0; } 
-        h1,h2,h3,h4,h5,h6 { color: var(--kp-text); }
-        p, li, address, time { color: var(--kp-muted); }
-        a { color: var(--kp-accent); text-decoration: none; }
-        a:hover { color: var(--kp-accent-600); }
-        .contacts-list, .service-list, .skills-list, .project-list,
-        .testimonials-list, .filter-list { list-style: none; padding: 0; margin: 0; }
-
-        /* --- Layout --- */
-        main{ max-width:1120px; margin:16px auto 96px; padding:0 16px; }
-        section{ background:var(--kp-surface); border:1px solid var(--kp-border); border-radius:var(--kp-radius-lg); box-shadow:var(--kp-shadow); padding:var(--pad); margin-bottom:var(--gap); }
-        article.active{ display:block; }
-
-        /* --- Headings --- */
-        h1, h2, h3, h4 { color:var(--kp-text); }
-        .h2.article-title, h2{ color:var(--kp-text); margin:0 0 10px; font-weight:600; position:relative; padding-bottom:6px; }
-        h2::after{ content:""; position:absolute; left:0; bottom:0; width:42px; height:3px; background:var(--kp-accent); border-radius:3px; }
-
-        /* --- Custom Styles for Report Content (based on Kristine Theme) --- */
-        section {
-            background: var(--kp-surface);
-            border: 1px solid var(--kp-border);
-            border-radius: var(--kp-radius-lg);
-            box-shadow: var(--kp-shadow);
-            padding: 30px; /* Increased padding for main sections */
-            margin-bottom: 24px;
-        }
-        
-        /* Image styling */
-        section img {
-            border-radius: var(--kp-radius-md);
-            border: 1px solid var(--kp-border);
-            box-shadow: var(--shadow-sm);
-            margin: 15px 0 20px 0;
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* List styling for recommendations */
-        ul {
-            list-style: disc;
-            padding-left: 25px;
-            margin-top: 15px;
-        }
-        ul li {
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
-
-        /* IFRAME for embedded HTML tables */
-        iframe {
-            border: 1px solid var(--kp-border);
-            border-radius: var(--kp-radius-md);
-            margin-top: 15px;
-            width: 100%;
-            height: 250px;
-        }
-
-        /* Footer styling */
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: var(--kp-muted);
-            font-size: 0.9em;
-            border-top: 1px solid var(--kp-border);
-            margin-top: 30px;
-        }
-
-        /* Headings for better separation */
-        section h3 {
-            margin-top: 25px;
-            color: var(--kp-accent);
-            font-weight: 600;
-        }
-        
-        /* Specific content enhancements */
-        p strong {
-            color: var(--kp-text);
-        }
-    </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <main>
+
+  <main>
+
+    <aside class="sidebar" data-sidebar>
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="./assets/images/kristine-profile.JPG" alt="Kristine Park">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Kristine Park">Kristine (Seo Yeon) Park</h1>
+          <p class="title">Business & Product Operations Analyst</p>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+              <a href="mailto:kristinepark1022@gmail.com" class="contact-link">kristinepark1022@gmail.com</a>
+            </div>
+          </li>
+
+          <li class="contact-item">
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+              <a href="tel:+16075927892" class="contact-link">+1 (607) 592-7892</a>
+            </div>
+          </li>
+
+          <li class="contact-item">
+            <div class="icon-box">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">LinkedIn</p>
+              <a href="https://www.linkedin.com/in/kristine-sy-park" class="contact-link" target="_blank" rel="noopener noreferrer">Profile</a>
+            </div>
+          </li>
+
+          <li class="contact-item">
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+              <address>New York, NY</address>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </aside>
+
+    <div class="main-content">
+
+      <article class="about active">
+
         <header>
-            <h1>Coffee Market Analysis: Data-Driven Sales Strategy</h1>
-            <p>A portfolio project analyzing 1,300+ coffee reviews to identify key market segments, understand the language of quality, and provide actionable recommendations to strengthen e-commerce sales.</p>
+          <h2 class="h2 article-title">Coffee Weather Analysis</h2>
         </header>
 
-        <section>
-            <h2>Phase 1: Data Preparation & Exploration</h2>
-            <p>The dataset was cleaned by dropping null values and removing duplicated/irrelevant columns. Text data was pre-processed using NLTK (tokenization, stop-word removal) and VADER sentiment analysis to prepare the data for subsequent modeling.</p>
+        <section class="about-text">
+          <p>
+            This project explores whether weather and seasonality influence coffee buying behavior across three NYC neighborhoods:
+            Lower Manhattan, Hell’s Kitchen, and Astoria.
+          </p>
 
-            <h3>Rating Distribution</h3>
-            <p>The dataset exhibits a strong skew towards high ratings, indicating the source data is highly curated and focuses on specialty-grade coffees.</p>
-            <img src="rating_distribution.png" alt="Histogram of coffee ratings.">
+          <p>
+            By combining transaction-level coffee sales data with daily weather metrics, I examined how temperature and precipitation
+            related to product demand, store-level sales, and neighborhood purchasing patterns.
+          </p>
         </section>
 
-        <section>
-            <h2>Phase 2: Process Automation & Data Collection</h2>
-            <p>A full-lifecycle solution was designed to automate data collection and quality control, demonstrating an ability to design the data pipeline, not just analyze the output.</p>
-            <p>This system uses **Formstack** to create digital submission forms for roasters and internal Quality Control (QC) checks, with the data pipe-lined directly into **Smartsheet** as the central, collaborative database.</p>
-            <p>Crucially, **Smartsheet Flow Automation** was implemented to trigger immediate alerts to the QC team when a new entry registers a rating below 89 points or contains low-rated keywords like "scorched," ensuring rapid intervention and preventing low-quality products from reaching the market. This creates a powerful, automated feedback loop.</p>
+        <section class="service">
+          <h3 class="h3 service-title">Project Snapshot</h3>
+
+          <ul class="service-list">
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="help-circle-outline"></ion-icon>
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Business Question</h4>
+                <p class="service-item-text">
+                  Do weather and seasonal conditions change coffee buying behavior, and do those effects vary by neighborhood?
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="calendar-outline"></ion-icon>
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Timeframe</h4>
+                <p class="service-item-text">
+                  January 2023 – June 2023
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="build-outline"></ion-icon>
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Tools</h4>
+                <p class="service-item-text">
+                  BigQuery, SQL, Excel, data cleaning, aggregation, and dashboard design
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="location-outline"></ion-icon>
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Locations</h4>
+                <p class="service-item-text">
+                  Lower Manhattan, Hell’s Kitchen, Astoria
+                </p>
+              </div>
+            </li>
+
+          </ul>
         </section>
 
-        <section>
-            <h2>Phase 3: Market Segmentation via K-Means Clustering</h2>
-            <p>K-Means was applied to the normalized features **Rating, Price (100g_USD), and Sentiment (Compound Score)**. The optimal number of clusters was determined to be four, revealing distinct customer segments.</p>
+        <section class="timeline">
 
-            <h3>Segment Visualization</h3>
-            <img src="cluster_visualization.png" alt="Scatter plot showing 4 distinct customer clusters.">
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="document-text-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Overview</h3>
+          </div>
 
-            <h3>Cluster Characteristics</h3>
-            <p>The four clusters reveal distinct market segments, from the high-volume, lower-price 'Daily Drinker' to the extremely high-value 'Luxury Collector'. The strategy must be tailored to these groups.</p>
-            <iframe src="cluster_summary.html" width="100%" height="250px" frameborder="0"></iframe>
+          <ol class="timeline-list">
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Objective</h4>
+              <p class="timeline-text">
+                I wanted to understand whether daily temperature and rainfall were associated with changes in coffee shop sales,
+                and whether those relationships differed across neighborhoods and product categories.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Data</h4>
+              <p class="timeline-text">
+                The project combined coffee transaction data, including date, quantity, pricing, store location, product category,
+                product type, and product detail, with daily weather data including temperature, rain, snowfall, and snow depth.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Approach</h4>
+              <p class="timeline-text">
+                I cleaned the raw sales and weather tables, converted hourly weather records into daily summaries, joined the datasets
+                on transaction date, and created SQL aggregations to analyze store-level and category-level patterns.
+              </p>
+            </li>
+          </ol>
+
         </section>
 
-        <section>
-            <h2>Phase 4: The Language of Quality (Keyword Analysis)</h2>
-            <p>Positive keywords from the highest-rated coffees (95+ points) were extracted to understand consumer language and identify selling points.</p>
+        <section class="timeline">
 
-            <h3>Top Keywords in High-Rated Coffees (95+)</h3>
-            <p>The highest-rated coffees are described using **technical, structure-focused language**, confirming the target consumer is sophisticated and values complex attributes beyond simple flavor notes.</p>
-            <iframe src="high_keywords.html" width="100%" height="250px" frameborder="0"></iframe>
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="analytics-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Analysis Highlights</h3>
+          </div>
+
+          <ol class="timeline-list">
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">1. Sales Trends by Store</h4>
+              <p class="timeline-text">
+                I compared daily sales across the three neighborhoods to identify differences in demand patterns over time.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">2. Temperature vs. Sales</h4>
+              <p class="timeline-text">
+                I analyzed whether warmer or colder days were associated with shifts in daily sales and purchase quantity.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">3. Rainy vs. Non-Rainy Days</h4>
+              <p class="timeline-text">
+                I grouped days by rainfall presence to compare store performance under different weather conditions.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">4. Product Mix by Weather</h4>
+              <p class="timeline-text">
+                I explored how product categories and types behaved across different weather scenarios to identify weather-sensitive demand.
+              </p>
+            </li>
+          </ol>
+
         </section>
-        
-        <section>
-            <h2>Phase 5: Strategic Recommendations</h2>
-            <p>By cross-referencing data insights with the marketing strategies of leading competitor websites (Kakalove Cafe, JBC Roasters, Paradise Roasters), we propose a 3-point strategy to strengthen sales:</p>
 
-            <h3>1. Data-Driven Product Descriptions</h3>
-            <p>Use the high-frequency terms: **'mouthfeel,' 'structure,' 'finish,'** and **'juicy'** directly in product copy. This validates the product's quality for the technical consumer.</p>
+        <section class="service">
+          <h3 class="h3 service-title">Key Findings</h3>
 
-            <h3>2. Targeted Segmentation and Branding</h3>
-            <ul>
-                <li>**For Luxury Collectors (Highest Cluster):** Adopt **The Paradise Roasters Strategy** (luxury marketing, scarcity, 'Allocation Lists').</li>
-                <li>**For Quality Enthusiasts (Mid-High Cluster):** Adopt **The JBC Strategy** (human story, sustainability, strong social proof).</li>
-                <li>**For All Coffees:** Use the **Coffee Review Rating Score** prominently, as seen on the **Kakalove Cafe** website, to build immediate consumer trust.</li>
-            </ul>
+          <ul class="service-list">
 
-            <h3>3. Automate Defect Prevention</h3>
-            <p>The low-rated keywords like **'scorched'** and **'fir'** indicate technical faults. The automated Smartsheet flow (Phase 2) is critical for ensuring these defects are identified and eliminated at the QC level before they reach the consumer, protecting brand integrity.</p>
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="thermometer-outline"></ion-icon>
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Temperature mattered more than snow</h4>
+                <p class="service-item-text">
+                  Temperature showed a clearer relationship with sales behavior than snow-related metrics in the January–June period.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="rainy-outline"></ion-icon>
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Rain effects varied by location</h4>
+                <p class="service-item-text">
+                  Rainy days were associated with different sales patterns across neighborhoods, suggesting local demand sensitivity.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="cafe-outline"></ion-icon>
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Product demand was not uniform</h4>
+                <p class="service-item-text">
+                  Some product categories appeared more weather-sensitive than others, indicating an opportunity for targeted promotions.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <ion-icon name="business-outline"></ion-icon>
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Neighborhood context matters</h4>
+                <p class="service-item-text">
+                  The three store locations showed different purchasing patterns, suggesting neighborhood-level strategy could improve performance.
+                </p>
+              </div>
+            </li>
+
+          </ul>
         </section>
 
-        <footer>
-            <p>Data Source: Coffee Review. Project by [Your Name]. | Process Automation: Formstack & Smartsheet Flow.</p>
-        </footer>
-    </main>
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="bulb-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Business Recommendations</h3>
+          </div>
+
+          <ol class="timeline-list">
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Weather-triggered promotions</h4>
+              <p class="timeline-text">
+                Use forecast-based campaigns to promote relevant items depending on rainy, cold, or warm conditions.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Location-specific planning</h4>
+              <p class="timeline-text">
+                Adjust promotions, staffing, and merchandising strategies based on neighborhood-level demand behavior.
+              </p>
+            </li>
+
+            <li class="timeline-item">
+              <h4 class="h4 timeline-item-title">Inventory optimization</h4>
+              <p class="timeline-text">
+                Align product emphasis and stock planning with seasonal and weather-sensitive category trends.
+              </p>
+            </li>
+          </ol>
+
+        </section>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="warning-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Limitations</h3>
+          </div>
+
+          <ol class="timeline-list">
+            <li class="timeline-item">
+              <p class="timeline-text">
+                This analysis covered only January through June 2023 and did not account for holidays, promotions, or weekday/weekend effects.
+              </p>
+            </li>
+            <li class="timeline-item">
+              <p class="timeline-text">
+                Weather data was aggregated at the city level rather than perfectly store-specific.
+              </p>
+            </li>
+          </ol>
+
+        </section>
+
+        <section class="contact-form">
+          <h3 class="h3 form-title">Project Links</h3>
+
+          <div class="contacts-list">
+            <div class="contact-item">
+              <div class="icon-box">
+                <ion-icon name="arrow-back-outline"></ion-icon>
+              </div>
+              <div class="contact-info">
+                <p class="contact-title">Back to Portfolio</p>
+                <a href="/index.html" class="contact-link">Return to main portfolio</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="icon-box">
+                <ion-icon name="document-outline"></ion-icon>
+              </div>
+              <div class="contact-info">
+                <p class="contact-title">Optional</p>
+                <a href="#" class="contact-link">Add dashboard / PDF / GitHub link here</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </article>
+
+    </div>
+
+  </main>
+
+  <script src="./assets/js/script.js"></script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
+
 </html>
